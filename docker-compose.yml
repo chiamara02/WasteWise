@@ -1,0 +1,80 @@
+version: "3"
+
+networks:
+  internal:
+    driver: bridge
+
+services:
+  mongo:
+    container_name: mongo-WasteWise-container
+    image: mongo
+    restart: always
+    logging:
+      driver: none
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: PgeCz77fvd9y65jY9QLk
+      MONGO_INITDB_DATABASE: WasteWise
+      MONGO_USER: user
+      MONGO_PASSWORD: 7lGxHhhtjfKcmogOGk2r
+    networks:
+      - internal
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongod.conf:/etc/mongod.conf:ro
+
+  mongo-express:
+    container_name: mongo-express-WasteWise-container
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: PgeCz77fvd9y65jY9QLk
+      ME_CONFIG_MONGODB_URL: mongodb://root:PgeCz77fvd9y65jY9QLk@mongo:27017/?useUnifiedTopology=true
+    networks:
+      - internal
+
+  backend:
+    container_name: backend-WasteWise-container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: npm run dev
+    volumes:
+      - ./backend/:/app/
+      - /app/node_modules
+    depends_on:
+      - mongo
+    ports:
+      - '3001:3000'
+    environment:
+      DB_NAME: "WasteWise"
+      DB_USER: "user"
+      DB_PWD: "7lGxHhhtjfKcmogOGk2r"
+      JWT_SECRET: "1WBw#9d#ve0@Mo*5LVxjgAH3&RtbyG99"
+    networks:
+      - internal
+
+  frontend:
+    container_name: frontend-WasteWise-container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm run dev
+    volumes:
+      - ./frontend/:/app/
+      - /app/node_modules
+    depends_on:
+      - backend
+    ports:
+      - '3000:3000'
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - internal
+    stdin_open: true
+    tty: true
