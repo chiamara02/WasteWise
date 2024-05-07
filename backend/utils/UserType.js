@@ -1,14 +1,15 @@
 const AbstractUser = require('../users/AbstractUser');
 const AnonymousUser = require('../users/AnonymousUser');
-// const Admin = require('../users/Admin');
-// const Editor = require('../users/Editor');
-// const Reader = require('../users/Reader');
+const Cittadino = require('../users/Cittadino');
+const Ente = require('../users/Ente');
+const Operatore = require('../users/Operatore');
 
 const userTypes = {
     'abstractUser': AbstractUser,
-    'anonymousUser': AnonymousUser
-    // 'admin': Admin,
-    // 'user': User,
+    'anonymousUser': AnonymousUser,
+    'cittadino': Cittadino,
+    'ente': Ente,
+    'operatore': Operatore
 };
 
 class UserType {
