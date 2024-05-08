@@ -7,7 +7,7 @@ var ZonaSchema = new mongoose.Schema({
     },
 });
 
-var Zona = new mongoose.model("ZonaSchema", ZonaSchema);
+var Zona = new mongoose.model("Zona", ZonaSchema);
 
 module.exports = {
     Zona: Zona,
