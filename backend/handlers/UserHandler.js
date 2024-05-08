@@ -1,19 +1,26 @@
 const User = require("../db/user").User;
+const Zona = require("../db/zona").Zona;
 const jwt = require("jsonwebtoken");
 const NotFoundException = require("../exceptions/NotFoundException");
 const FailedDependencyException = require("../exceptions/FailedDependencyException");
 const WrongPasswordException = require("../exceptions/WrongPasswordException");
 
 class UserHandler {
-    static async createAccount(username, userType, email, password) {
+    static async createAccount(email, password, nome, zona, userType) {
         // check if email already exists
         let user = await User.findOne({ email: email });
         if (user) throw new FailedDependencyException("Email already in use");
 
+        // check if zone is valid
+        console.log("input zona: ", zona)
+        let zona_db = await Zona.findOne({ nome: zona });
+        if(!zona_db) throw new FailedDependencyException("Zone not found"); 
+
         user = await User.create({
+            nome: nome,
             email: email,
             password: password,
-            username: username,
+            zona: zona_db._id,
             userType: userType,
         });
         return user;

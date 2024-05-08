@@ -24,16 +24,16 @@ passport.use(
     async (req, email, password, done) => {
       try {
         const user = await AnonymousUser.createAccount(
-          req.body.nome,
-          "user",
           email,
           password,
-          ""
+          req.body.nome,
+          req.body.zona,
+          "cittadino"
         );
 
         return done(null, user);
       } catch (error) {
-        // console.log(error);
+        console.log(error);
         return done(null, false);
       }
     }
