@@ -8,14 +8,19 @@ import {
   ToastContainer
 } from 'react-toastify'
 import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './routes/homepage.route'
-
+import Login from './routes/login.route'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
   }
 ])
 
