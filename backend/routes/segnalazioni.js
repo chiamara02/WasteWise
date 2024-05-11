@@ -3,7 +3,7 @@ const router = express.Router();
 const { errorRes, successRes } = require("../response");
 const passport = require("passport");
 const User = require("../db/user").User;
-const ClasseUtente = require("../utils/UserType");
+const TipoUtente = require("../utils/UserType");
 const NotFoundException = require("../exceptions/NotFoundException");
 const BadRequestException = require("../exceptions/BadRequestException");
 
@@ -25,7 +25,7 @@ router.post(
       const user = await User.findOne({ _id: req.user._id });
   
       try {
-        idSegnalazione = await ClasseUtente.getUserType(user.userType).nuovaSegnalazione(
+        idSegnalazione = await TipoUtente.getUserType(user.userType).nuovaSegnalazione(
           req.user._id,
           req.body.descrizione,
           req.body.zona,
@@ -47,7 +47,7 @@ router.get(
       const user = await User.findOne({_id: req.user._id});
 
       try {
-        data = await ClasseUtente.getUserType(user.userType).mostraSegnalazioni();
+        data = await TipoUtente.getUserType(user.userType).mostraSegnalazioni();
         successRes(res, "OK", data, 200);
       }  catch (error) {
         errorRes(res, error, error.message, error.code);
@@ -55,3 +55,4 @@ router.get(
     }
   );
   
+module.exports = router;
