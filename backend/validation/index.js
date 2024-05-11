@@ -147,20 +147,22 @@ const changePasswordSchema = {
 };
 
 const segnalazioneSchema = {
-  utente :{
-    notEmpty: true,
-    isString: true,
-    required: true
-  },
+  // utente :{
+  //   notEmpty: true,
+  //   isString: true,
+  //   required: true
+  // },
   descrizione:{
     notEmpty: true,
     isString: true,
     required : true,
   },
-indirizzo:{
+  zona: zonaSchema.zona,
+  foto:{
     notEmpty: true,
-    required: true,
-  },
+    isString: true,
+    required : true,
+  }
 };
 
 

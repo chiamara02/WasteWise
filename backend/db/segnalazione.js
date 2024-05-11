@@ -8,8 +8,7 @@ var SegnalazioneSchema = new mongoose.Schema({
     utente:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',                  
-        required: true,
-        unique: true,
+        required: true, 
     },
     descrizione:{
         type: String,
@@ -20,10 +19,10 @@ var SegnalazioneSchema = new mongoose.Schema({
         ref: 'Zona',
         required: true,
     },
-    foto:[{
-        data: Buffer,
-        contentType: String,
-    }],
+    foto:{
+        //data: Buffer,
+        Type: String,
+    },
 });
 
 var Segnalazione = new mongoose.model("Segnalazione", SegnalazioneSchema);
