@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const User = require("./user").Schema
+const Zona = require("./zona").Schema
 
 // Segnalazione schema
 var SegnalazioneSchema = new mongoose.Schema({
-    _idutente:{
+    utente:{
         type: Schema.Types.ObjectId,
         ref: 'User',                  
         required: true,
@@ -14,8 +15,9 @@ var SegnalazioneSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    indirizzo:{
-        type: String,
+    zona:{
+        type: Schema.Types.ObjectId,
+        ref: 'Zona',
         required: true,
     },
     foto:[{

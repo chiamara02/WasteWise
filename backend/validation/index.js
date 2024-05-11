@@ -146,6 +146,24 @@ const changePasswordSchema = {
   newPassword: passwordSchema.password,
 };
 
+const segnalazioneSchema = {
+  utente :{
+    notEmpty: true,
+    isString: true,
+    required: true
+  },
+  descrizione:{
+    notEmpty: true,
+    isString: true,
+    required : true,
+  },
+indirizzo:{
+    notEmpty: true,
+    required: true,
+  },
+};
+
+
 module.exports = {
   userSchemaSignUP,
   userSchemaLogin,
@@ -155,4 +173,6 @@ module.exports = {
   zonaSchema,
   userTypeSchema,
   changePasswordSchema,
+  segnalazioneSchema
 };
+
