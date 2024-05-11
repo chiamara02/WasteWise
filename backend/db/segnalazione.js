@@ -6,7 +6,7 @@ const Zona = require("./zona").Schema
 // Segnalazione schema
 var SegnalazioneSchema = new mongoose.Schema({
     utente:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',                  
         required: true,
         unique: true,
@@ -16,7 +16,7 @@ var SegnalazioneSchema = new mongoose.Schema({
         required : true,
     },
     zona:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Zona',
         required: true,
     },

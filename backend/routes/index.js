@@ -1,5 +1,6 @@
 // const passport = require("passport");
 require("../auth/passport-auth");
+const passport = require("passport");
 
 const auth = require("./auth");
 const segnalazioni = require("./segnalazioni");
