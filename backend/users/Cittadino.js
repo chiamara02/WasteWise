@@ -8,15 +8,15 @@ class Cittadino extends LoggedUser {
     }
 
     static async getStoricoTasse(idUser) {
-        return await TaxHandler.getStoricoTasse(idUser);
+        return TaxHandler.getStoricoTasse(idUser);
     }
 
     static async getPendingTasse(idUser) {
-        return await TaxHandler.getTasseByStatus(idUser, "nonPagato");
+        return TaxHandler.getTasseByStatus(idUser, "nonPagato");
     }
 
-    static async getPaidTasse(id){
-        return await TaxHandler.getTasseByStatus(idUser, "pagato")
+    static async getPaidTasse(idUser){
+        return TaxHandler.getTasseByStatus(idUser, "pagato")
     }
     
 }

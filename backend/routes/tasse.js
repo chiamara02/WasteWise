@@ -12,6 +12,8 @@ const { checkSchema, validationResult } = require("express-validator");
 const userSchemaSignUP = require("../validation").userSchemaSignUP;
 const userSchemaLogin = require("../validation").userSchemaLogin;
 
+const TipoUtente = require("../utils/UserType");
+
 const { ServerResponse } = require("http");
 const AnonymousUser = require("../users/AnonymousUser");
 
@@ -45,7 +47,7 @@ router.get(
     async function (req, res, next){
         const user = await User.findOne({_id: req.user._id});
         try{
-            data = await TipoUtente.getUserType(user.userType).getTasseByStatus(req.user._id);
+            data = await TipoUtente.getUserType(user.userType).getPaidTasse(req.user._id);
             successRes(res, "OK", data, 200);
         } catch (error){
             errorRes(res, error, error.message, error.code);
@@ -60,7 +62,7 @@ router.get(
     async function (req, res, next){
         const user = await User.findOne({_id: req.user._id});
         try{
-            data = await TipoUtente.getUserType(user.userType).getStoricoTasse(req.user._id);
+            data = await TipoUtente.getUserType(user.userType).getPendingTasse(req.user._id);
             successRes(res, "OK", data, 200);
         } catch (error){
             errorRes(res, error, error.message, error.code);

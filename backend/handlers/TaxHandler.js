@@ -20,7 +20,7 @@ class TaxHandler {
         }
     }
 
-    static async getTasseByStatus(idUSer, stato){
+    static async getTasseByStatus(idUser, stato){
         //check if the user exist
         let user = await User.findById(idUser);
         if (!user) throw new NotFoundException("User not found");
@@ -44,3 +44,5 @@ class TaxHandler {
         return tasse;
     }
 }
+
+module.exports = TaxHandler;
