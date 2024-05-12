@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const User = require("./user").Schema
 // Segnalazione schema
-var pagamentoTasseSchema = new mongoose.Schema({
+var tasseSchema = new mongoose.Schema({
     idUtente:{
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',                  
         required: true,
         unique: true,
@@ -14,21 +14,21 @@ var pagamentoTasseSchema = new mongoose.Schema({
         required : true,
     },
     statoPagamento:{
-        type: Stato,
+        type: String,
         required: true,
         enum : [
             "pagato",
             "nonPagato",
         ],
     },
-    import:[{
+    importo:[{
         type: Number,
         required: true,
     }],
 });
 
-var pagamentoTasse = new mongoose.model("pagamentoTasse", pagamentoTasseSchema);
+var tasse = new mongoose.model("tasse", tasseSchema);
 
 module.exports = {
-    pagamentoTasse: pagamentoTasse,
+    tasse: tasse,
 }

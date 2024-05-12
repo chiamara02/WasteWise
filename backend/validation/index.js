@@ -146,6 +146,15 @@ const changePasswordSchema = {
   newPassword: passwordSchema.password,
 };
 
+const taxSchema = {
+  scadenza: {
+    isDate: true,
+  },
+  importo: {
+    isFloat : true,
+  }
+}
+
 module.exports = {
   userSchemaSignUP,
   userSchemaLogin,
@@ -155,4 +164,5 @@ module.exports = {
   zonaSchema,
   userTypeSchema,
   changePasswordSchema,
+  taxSchema,
 };
