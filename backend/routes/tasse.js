@@ -25,49 +25,28 @@ const taxSchema = require("../validation");
 const NotFoundException = require("../exceptions/NotFoundException");
 
 router.get(
-    "/mostraStoricoTasse",
+    "/mostraTasse",
     passport.authenticate("jwt", {
       session: false,
     }),
     async function (req, res, next){
         const user = await User.findOne({_id: req.user._id});
         try{
-            data = await TipoUtente.getUserType(user.userType).getStoricoTasse(req.user._id);
+            const stato = req.headers.stato;
+            if(stato === "pagate"){
+                data = await TipoUtente.getUserType(user.userType).getPaidTasse(req.user._id);
+            } else if(stato === "non pagate"){
+                data = await TipoUtente.getUserType(user.userType).getPendingTasse(req.user._id);
+            } else {
+                data = await TipoUtente.getUserType(user.userType).getAllTasse(req.user._id);
+            }
+           
             successRes(res, "OK", data, 200);
         } catch (error){
             errorRes(res, error, error.message, error.code);
         }
 });
 
-router.get(
-    "/mostraTassePagate",
-    passport.authenticate("jwt", {
-     session: false,
-    }),
-    async function (req, res, next){
-        const user = await User.findOne({_id: req.user._id});
-        try{
-            data = await TipoUtente.getUserType(user.userType).getPaidTasse(req.user._id);
-            successRes(res, "OK", data, 200);
-        } catch (error){
-            errorRes(res, error, error.message, error.code);
-        }
-});
-
-router.get(
-    "/mostraTasseNonPagate",
-    passport.authenticate("jwt", {
-     session: false,
-    }),
-    async function (req, res, next){
-        const user = await User.findOne({_id: req.user._id});
-        try{
-            data = await TipoUtente.getUserType(user.userType).getPendingTasse(req.user._id);
-            successRes(res, "OK", data, 200);
-        } catch (error){
-            errorRes(res, error, error.message, error.code);
-        }
-});
 
 router.post(
     "/nuovaTassa",

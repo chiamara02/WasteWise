@@ -6,7 +6,7 @@ const WrongPasswordException = require("../exceptions/WrongPasswordException");
 const user = require('../db/user');
 
 class TaxHandler {
-    static async getStoricoTasse(idUser){
+    static async getAllTasse(idUser){
         //check if the user exist
         let user = await User.findById(idUser);
         if (!user) throw new NotFoundException("User not found");
