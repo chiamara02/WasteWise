@@ -146,6 +146,7 @@ const changePasswordSchema = {
   newPassword: passwordSchema.password,
 };
 
+<<<<<<< HEAD
 const segnalazioneSchema = {
   // utente :{
   //   notEmpty: true,
@@ -165,6 +166,16 @@ const segnalazioneSchema = {
   }
 };
 
+=======
+const taxSchema = {
+  scadenza: {
+    isDate: true,
+  },
+  importo: {
+    isFloat : true,
+  }
+}
+>>>>>>> S1-M1
 
 module.exports = {
   userSchemaSignUP,
@@ -175,6 +186,10 @@ module.exports = {
   zonaSchema,
   userTypeSchema,
   changePasswordSchema,
+<<<<<<< HEAD
   segnalazioneSchema
+=======
+  taxSchema,
+>>>>>>> S1-M1
 };
 
