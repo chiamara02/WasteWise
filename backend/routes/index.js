@@ -16,4 +16,5 @@ module.exports = (app) => {
   app.use(base_url + "/auth", auth);
   app.use(base_url + "/zone", zone);
   app.use(base_url + "/segnalazioni", segnalazioni);
+  
 };
