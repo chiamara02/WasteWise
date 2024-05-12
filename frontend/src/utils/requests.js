@@ -38,3 +38,12 @@ export async function login(email, pw) {
     }
     return data;
 }
+
+export async function nuovaSegnalazione(descrizione, zona, foto) {
+    let data = await fetchAPI('/segnalazioni/nuovaSegnalazione', 'POST', {
+        "descrizione": descrizione,
+        "zona": zona,
+        "foto": foto
+    });
+    return data;
+}
