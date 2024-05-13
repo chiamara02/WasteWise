@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './routes/homepage.route'
 import Login from './routes/login.route'
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
+import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/nuovaSegnalazione',
     element: <NuovaSegnalazione />
+  },
+  {
+    path: '/mostraSegnalazioni',
+    element: <MostraSegnalazioni />
   }
 ])
 

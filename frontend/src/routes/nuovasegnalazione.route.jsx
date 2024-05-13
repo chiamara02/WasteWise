@@ -20,7 +20,7 @@ import { Link, Navigate, useLocation } from "react-router-dom"
 
 import { nuovaSegnalazione } from "../utils/requests"
 import { toast } from "react-toastify"
-import { PhotoIcon} from '@heroicons/react/24/solid'
+import { PhotoIcon } from '@heroicons/react/24/solid'
 
 
 
@@ -34,10 +34,10 @@ export default function NuovaSegnalazione() {
     foto: yup.string()
   })
 
-const {
+  const {
     register,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
     reset,
     watch,
     getValues
@@ -58,8 +58,14 @@ const {
     }
   }
 
-  return(
-    <form onSubmit={handleSubmit(onSubmit)} > 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} >
+      {/* <InputFeedback name={"nome"} label={"Nome"} type={"text"} error={errors.nome} register={register} />
+      <Select name={"zona"} label={"Zona"} options={useLoaderData()} register={register} />
+      <InputFeedback name={"email"} label={"Email"} type={"email"} error={errors.email} register={register} />
+      <InputFeedback name={"password"} label={"Password"} type={"password"} error={errors.password} register={register} />
+      <InputFeedback name={"cpassword"} label={"Conferma Password"} type={"password"} error={errors.cpassword} register={register} /> */}
+
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Invia una segnalazione</h2>
@@ -70,7 +76,7 @@ const {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label htmlFor="zona" className="block text-sm font-medium leading-6 text-gray-900">
-                Zona 
+                Zona
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -100,14 +106,14 @@ const {
                   defaultValue={''}
                 />
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">Descrivi la situazione di degrado urbano che hai trovato 
-              e specifica la via esatta. </p>
+              <p className="mt-3 text-sm leading-6 text-gray-600">Descrivi la situazione di degrado urbano che hai trovato
+                e specifica la via esatta. </p>
             </div>
 
 
             <div className="col-span-full">
               <label htmlFor="foto" className="block text-sm font-medium leading-6 text-gray-900">
-                Immagini 
+                Immagini
               </label>
               <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div className="text-center">
@@ -128,8 +134,8 @@ const {
             </div>
           </div>
         </div>
-    </div>
-            
+      </div>
+
 
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
