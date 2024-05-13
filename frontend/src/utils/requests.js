@@ -63,3 +63,23 @@ export async function createAccount(email, password, nome, zona) {
 export async function getZone() {
     return await fetchAPI('/zone', 'GET')
 }
+
+export async function getTasse(type) {
+    const requestOptions = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
+        }
+    }
+    if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))) {
+        let token = document.cookie.split('; ').find(row => row.startsWith('jwt=')).split('=')[1]
+        requestOptions['credentials'] = 'include'
+        requestOptions['headers']['Cookie'] = "jwt=" + token
+        requestOptions['headers']['stato']=type
+    }
+    let rt = await fetch(backendUrl.concat(endpoint), requestOptions)
+        .then(r => r.json())
+    return (rt)
+
+    }

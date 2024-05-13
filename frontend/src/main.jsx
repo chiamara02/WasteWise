@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './routes/homepage.route'
 import Login from './routes/login.route'
+import Tasse from './routes/tasse.route'
 import Signup, {loader as signupLoader} from './routes/signup.route'
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />,
     loader: signupLoader,
+  },
+  {
+    path: '/tasse',
+    element: <Tasse />,
   }
 ])
 
