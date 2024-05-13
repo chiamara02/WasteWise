@@ -3,7 +3,9 @@ require("../auth/passport-auth");
 const passport = require("passport");
 
 const auth = require("./auth");
-const segnalazioni = require("./segnalazioni");const zone = require("./zone");
+const segnalazioni = require("./segnalazioni");
+const zone = require("./zone");
+const tasse = require("./tasse");
 
 
 const base_url = "/api";

@@ -29,5 +29,5 @@ var TasseSchema = new mongoose.Schema({
 var tasse = new mongoose.model("Tasse", TasseSchema);
 
 module.exports = {
-    Tasse: Tasse,
+    Tasse: tasse,
 }
