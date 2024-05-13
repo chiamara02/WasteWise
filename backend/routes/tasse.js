@@ -21,7 +21,7 @@ const BadRequestException = require("../exceptions/BadRequestException");
 const UnauthorizedException = require("../exceptions/UnauthorizedException");
 
 
-const taxSchema = require("../validation");
+const taxSchema = require("../validation").taxSchema;
 const NotFoundException = require("../exceptions/NotFoundException");
 
 router.get(

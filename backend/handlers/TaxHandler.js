@@ -1,36 +1,52 @@
 const Tasse = require('../db/tasse').tasse;
+const TasseSchema = require("../db/tasse");
 const User = require("../db/user").User;
 const NotFoundException = require("../exceptions/NotFoundException");
 const FailedDependencyException = require("../exceptions/FailedDependencyException");
 const WrongPasswordException = require("../exceptions/WrongPasswordException");
-const user = require('../db/user');
+
 
 class TaxHandler {
-    static async getAllTasse(idUser){
+    static async getAllTasse(idUtente){
         //check if the user exist
-        let user = await User.findById(idUser);
+        let user = await User.findById(idUtente);
         if (!user) throw new NotFoundException("User not found");
         
         try {
-            let taxes = await Tasse.find({idUtente : idUser}).exec();
+            //let taxes = await TasseSchema.find({idUtente : idUser });
             //return tax list
-            return taxes;
+            let taxes = await Tasse.find();
+            let data = [];
+            for (let i = 0; i < taxes.length; i++){
+                if (taxes[i].idUtente == idUtente){
+                    data.push(taxes[i]);
+                }
+            }
+            return data;
         } catch (error) {
             throw new NotFoundException("Tax not found for given user");
         }
     }
 
-    static async getTasseByStatus(idUser, stato){
+    static async getTasseByStatus(idUtente, stato){
         //check if the user exist
-        let user = await User.findById(idUser);
+        let user = await User.findById(idUtente);
         if (!user) throw new NotFoundException("User not found");
         
         try {
-            let taxes = await Tasse.find({idUtente : idUser, statoPagamento : stato}).exec();
+            //let taxes = await TasseSchema.find({idUtente : idUser, statoPagamento : stato});
+            let taxes = await Tasse.find();
+            let data = [];
+            for (let i = 0; i < taxes.length; i++){
+                if (taxes[i].idUtente == idUtente && taxes[i].statoPagamento == stato){
+                    data.push(taxes[i]);
+                }
+            }
+            return data;
             //return tax list
             return taxes;
         } catch (error) {
-            throw new NotFoundException("Tax not found for given user");
+            throw new NotFoundException("Tax not found for given user and with given state");
         }
     }
 
