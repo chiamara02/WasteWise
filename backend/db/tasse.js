@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const User = require("./user").Schema
-// Segnalazione schema
-var tasseSchema = new mongoose.Schema({
+// Tasse schema
+var TasseSchema = new mongoose.Schema({
     idUtente:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',                  
@@ -26,8 +26,8 @@ var tasseSchema = new mongoose.Schema({
     }],
 });
 
-var tasse = new mongoose.model("tasse", tasseSchema);
+var tasse = new mongoose.model("Tasse", TasseSchema);
 
 module.exports = {
-    tasse: tasse,
+    Tasse: Tasse,
 }

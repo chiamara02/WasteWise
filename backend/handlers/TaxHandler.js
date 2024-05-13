@@ -1,8 +1,6 @@
 const Tasse = require('../db/tasse').tasse;
 const TasseSchema = require("../db/tasse");
 const User = require("../db/user").User;
-const NotFoundException = require("../exceptions/NotFoundException");
-const FailedDependencyException = require("../exceptions/FailedDependencyException");
 const WrongPasswordException = require("../exceptions/WrongPasswordException");
 
 

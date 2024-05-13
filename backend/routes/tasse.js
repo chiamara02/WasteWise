@@ -9,17 +9,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const { checkSchema, validationResult } = require("express-validator");
 
-const userSchemaSignUP = require("../validation").userSchemaSignUP;
-const userSchemaLogin = require("../validation").userSchemaLogin;
-
 const TipoUtente = require("../utils/UserType");
-
-const { ServerResponse } = require("http");
-const AnonymousUser = require("../users/AnonymousUser");
-
-const BadRequestException = require("../exceptions/BadRequestException");
-const UnauthorizedException = require("../exceptions/UnauthorizedException");
-
 
 const taxSchema = require("../validation").taxSchema;
 const NotFoundException = require("../exceptions/NotFoundException");
