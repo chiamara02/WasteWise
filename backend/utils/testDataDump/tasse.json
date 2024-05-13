@@ -1,0 +1,21 @@
+[
+    {
+      "idUtente": "user_id_1",
+      "importo": 100,
+      "statoPagamento": "pagato",
+      "scadenza": "2024-06-30"
+    },
+    {
+      "idUtente": "user_id_2",
+      "importo": 150,
+      "statoPagamento": "nonPagato",
+      "scadenza": "2024-07-15"
+    },
+    {
+      "idUtente": "ser_id_3",
+      "importo": 200,
+      "statoPagamento": "nonPagato",
+      "scadenza": "2024-07-10"
+    }
+  ]
+  
