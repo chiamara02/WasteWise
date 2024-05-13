@@ -1,7 +1,6 @@
 const User = require("../db/user").User;
 const Zona = require("../db/zona").Zona;
 const Segnalazione = require("../db/segnalazione").Segnalazione
-const ModelloSegnalazione = require("../db/segnalazione")
 const FailedDependencyException = require("../exceptions/FailedDependencyException");
 
 
@@ -26,7 +25,7 @@ class GestoreSegnalazioni {
 
     static async mostraSegnalazioni() {
         // Trova tutte le istanze del modello segnalazione
-        segnalazioni = await ModelloSegnalazione.find()
+        let segnalazioni = await Segnalazione.find();
         return segnalazioni;
     }
 }

@@ -9,7 +9,7 @@ class Cittadino extends LoggedUser {
     static async nuovaSegnalazione(utente, descrizione, zona, foto){
         return GestoreSegnalazioni.nuovaSegnalazione(utente, descrizione, zona, foto);
     }
-    
+
 }
 
 

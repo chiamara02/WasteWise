@@ -12,7 +12,7 @@
   }
   ```
 */
-import { useEffect, useState } from "react"
+//import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
@@ -22,7 +22,11 @@ import { nuovaSegnalazione } from "../utils/requests"
 import { toast } from "react-toastify"
 import { PhotoIcon} from '@heroicons/react/24/solid'
 
-const formSchema = yup.object().shape({
+
+
+export default function NuovaSegnalazione() {
+
+  const formSchema = yup.object().shape({
     descrizione: yup.string()
       .required("La descrizione della situazione è richiesta"),
     zona: yup.string()
@@ -33,7 +37,7 @@ const formSchema = yup.object().shape({
 const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
     reset,
     watch,
     getValues
@@ -54,9 +58,7 @@ const {
     }
   }
 
-
-export default function NuovaSegnalazione() {
-  return (
+  return(
     <form onSubmit={handleSubmit(onSubmit)} > 
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
@@ -72,7 +74,7 @@ export default function NuovaSegnalazione() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span>
+                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
                   <input
                     type="text"
                     name="zona"
@@ -141,5 +143,5 @@ export default function NuovaSegnalazione() {
         </button>
       </div>
     </form>
-  )
+  );
 }
