@@ -14,12 +14,20 @@ import HomePage from './routes/homepage.route'
 import Login from './routes/login.route'
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
+import Signup, {loader as signupLoader} from './routes/signup.route'
+import WipPage from './routes/wip.route'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
   },
+  {
+    path: '/signup',
+    element: <Signup />,
+    loader: signupLoader,
+  },  
   {
     path: '/login',
     element: <Login />,
@@ -31,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: '/mostraSegnalazioni',
     element: <MostraSegnalazioni />
+  },
+  {
+    path: '/wip',
+    element: <WipPage />,
   }
 ])
 

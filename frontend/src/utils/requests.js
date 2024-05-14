@@ -39,6 +39,31 @@ export async function login(email, pw) {
     return data;
 }
 
+// API POST /auth/signUp, sign up a new user,
+// returns an array, first element is a boolean that indicate the success of the request, 
+// second element is the data or the error message
+export async function createAccount(email, password, nome, zona) {
+    let data = await fetchAPI('/auth/signup', 'POST', {
+        "email": email,
+        "password": password,
+        "nome": nome,
+        "zona": zona,
+    })
+
+    if (data['success']) {
+        let token = data['data']['token']
+        let userType = data['data']['userType']
+
+        document.cookie = "jwt=" + token + "; path=/; max-age=86400; samesite=lax"
+        document.cookie = "userType=" + userType + "; path=/; max-age=86400; samesite=lax"
+    }
+    return data;
+}
+
+export async function getZone() {
+    return await fetchAPI('/zone', 'GET')
+}
+
 export async function nuovaSegnalazione(descrizione, zona, foto) {
     let data = await fetchAPI('/segnalazioni/nuovaSegnalazione', 'POST', {
         "descrizione": descrizione,
@@ -52,3 +77,4 @@ export async function mostraSegnalazioni() {
     return await fetchAPI('/segnalazioni/mostraSegnalazioni', 'GET');
     
 }
+
