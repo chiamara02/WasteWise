@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './routes/homepage.route'
 import Login from './routes/login.route'
 import Signup, {loader as signupLoader} from './routes/signup.route'
+import WipPage from './routes/wip.route'
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />,
     loader: signupLoader,
+  },  
+  {
+    path: '/wip',
+    element: <WipPage />,
   }
 ])
 
