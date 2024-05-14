@@ -45,6 +45,7 @@ router.get(
     }),
     async function (req, res, next) {
       const user = await User.findOne({_id: req.user._id});
+      console.log(user)
 
       try {
         data = await TipoUtente.getUserType(user.userType).mostraSegnalazioni();

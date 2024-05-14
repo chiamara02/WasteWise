@@ -1,18 +1,3 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-//import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
@@ -47,6 +32,7 @@ export default function NuovaSegnalazione() {
   })
 
   const onSubmit = async (data) => {
+    console.log("submitted")
     let response = await nuovaSegnalazione(data.descrizione, data.zona, data.foto)
     console.log(response)
     if (response && response["success"]) {

@@ -10,6 +10,10 @@ class Cittadino extends LoggedUser {
         return GestoreSegnalazioni.nuovaSegnalazione(utente, descrizione, zona, foto);
     }
 
+    static async mostraSegnalazioni(){
+        return GestoreSegnalazioni.mostraSegnalazioni();
+    }
+
 }
 
 

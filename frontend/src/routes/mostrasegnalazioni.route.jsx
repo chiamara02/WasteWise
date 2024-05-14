@@ -14,7 +14,8 @@ const MostraSegnalazioni = () => {
 
   const fetchSegnalazioni = async () => {
     let s = await mostraSegnalazioni()
-    if (s['status']) {
+    console.log(s)
+    if (s['success']) {
         setSegnalazioni(s['data']);
     }
 }

@@ -49,6 +49,6 @@ export async function nuovaSegnalazione(descrizione, zona, foto) {
 }
 
 export async function mostraSegnalazioni() {
-    return await fetchAPI('/segnalazioni/nuovaSegnalazione', 'GET');
+    return await fetchAPI('/segnalazioni/mostraSegnalazioni', 'GET');
     
 }
