@@ -3,11 +3,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import { Link, Navigate, useLocation } from "react-router-dom"
 
+import InputFeedback from "../components/inputFeedback.component"
+
 import { nuovaSegnalazione } from "../utils/requests"
 import { toast } from "react-toastify"
 import { PhotoIcon } from '@heroicons/react/24/solid'
-
-
 
 export default function NuovaSegnalazione() {
 
@@ -15,7 +15,7 @@ export default function NuovaSegnalazione() {
     descrizione: yup.string()
       .required("La descrizione della situazione è richiesta"),
     zona: yup.string()
-      .required("La zona va specificata"),
+      .required("L'indirizzo va specificato"),
     foto: yup.string()
   })
 
@@ -46,12 +46,6 @@ export default function NuovaSegnalazione() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
-      {/* <InputFeedback name={"nome"} label={"Nome"} type={"text"} error={errors.nome} register={register} />
-      <Select name={"zona"} label={"Zona"} options={useLoaderData()} register={register} />
-      <InputFeedback name={"email"} label={"Email"} type={"email"} error={errors.email} register={register} />
-      <InputFeedback name={"password"} label={"Password"} type={"password"} error={errors.password} register={register} />
-      <InputFeedback name={"cpassword"} label={"Conferma Password"} type={"password"} error={errors.cpassword} register={register} /> */}
-
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Invia una segnalazione</h2>
@@ -60,44 +54,28 @@ export default function NuovaSegnalazione() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label htmlFor="zona" className="block text-sm font-medium leading-6 text-gray-900">
-                Zona
-              </label>
-              <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-                  <input
-                    type="text"
-                    name="zona"
-                    id="zona"
-                    autoComplete="Villazzano"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="Villazzano"
-                  />
-                </div>
-              </div>
+            <div className="sm:col-span-3">
+              <InputFeedback name={"zona"} label={"Indirizzo"} type={"text"} error={errors.zona} register={register} />
             </div>
+            <div className="hidden sm:block sm:col-span-4"></div>
 
-            <div className="col-span-full">
+            <div className="col-span-3">
               <label htmlFor="descrizione" className="block text-sm font-medium leading-6 text-gray-900">
                 Descrizione
               </label>
               <div className="mt-2">
                 <textarea
+                  {...register("descrizione")}
                   id="descrizione"
                   name="descrizione"
-                  rows={5}
+                  rows={7}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={''}
+                  placeholder={'Descrivi la situazione di degrado urbano che hai trovato e specifica la via esatta.'}
                 />
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">Descrivi la situazione di degrado urbano che hai trovato
-                e specifica la via esatta. </p>
             </div>
 
-
-            <div className="col-span-full">
+            <div className="col-span-3">
               <label htmlFor="foto" className="block text-sm font-medium leading-6 text-gray-900">
                 Immagini
               </label>
@@ -106,11 +84,11 @@ export default function NuovaSegnalazione() {
                   <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                     <label
-                      htmlFor="file-upload"
+                      htmlFor="foto"
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Carica un file</span>
-                      <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                      <input {...register("foto")} id="foto" name="foto" type="file" className="sr-only" />
                     </label>
                     <p className="pl-1">oppure trascinalo in questa sezione</p>
                   </div>

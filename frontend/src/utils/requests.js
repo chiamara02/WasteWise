@@ -5,7 +5,8 @@ async function fetchAPI(endpoint, method, body = {}) {
         method: method,
         headers: {
             'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
         }
     }
     if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))) {
