@@ -155,14 +155,12 @@ const segnalazioneSchema = {
   descrizione:{
     notEmpty: true,
     isString: true,
-    required : true,
   },
   zona: zonaSchema.zona,
-  foto:{
+  foto: {
     notEmpty: true,
     isString: true,
-    required : true,
-  }
+  },
 };
 
 
@@ -175,6 +173,6 @@ module.exports = {
   zonaSchema,
   userTypeSchema,
   changePasswordSchema,
-  segnalazioneSchema
+  segnalazioneSchema,
 };
 

@@ -8,7 +8,7 @@ const NotFoundException = require("../exceptions/NotFoundException");
 const BadRequestException = require("../exceptions/BadRequestException");
 
 const { checkSchema, validationResult, check } = require("express-validator");
-const segnalazioneSchema = require("../validation");
+const segnalazioneSchema = require("../validation").segnalazioneSchema;
 
 router.post(
     "/nuovaSegnalazione",

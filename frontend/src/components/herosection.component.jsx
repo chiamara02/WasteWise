@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function HeroSection() {
     return (
@@ -22,12 +23,12 @@ export default function HeroSection() {
                                     città e proteggiamo l'ambiente con una gestione più intelligente dei rifiuti!
                                 </p>
                                 <div className="mt-10 flex items-center gap-x-6">
-                                    <a
-                                        href="/signup"
+                                    <Link
+                                        to="/signup"
                                         className="rounded-md bg-primary px-3.5 py-2.5 text-lm font-semibold text-white shadow-sm hover:bg-primaryhover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >
                                         Registrati ora!
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
 
