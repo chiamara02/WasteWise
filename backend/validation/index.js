@@ -156,8 +156,15 @@ const segnalazioneSchema = {
     notEmpty: true,
     isString: true,
   },
-  zona: zonaSchema.zona,
+
+  indirizzo: {
+    notEmpty: true,
+    isString: true,
+    required : true,
+  },
+  
   foto: {
+
     notEmpty: true,
     isString: true,
   },

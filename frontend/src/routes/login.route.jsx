@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
-import { Link, Navigate, useLocation } from "react-router-dom"
+import {Link, Navigate, useLocation } from "react-router-dom"
 
 import { login } from "../utils/requests"
 import { toast } from "react-toastify"

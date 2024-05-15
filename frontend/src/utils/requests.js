@@ -5,7 +5,8 @@ async function fetchAPI(endpoint, method, body = {}) {
         method: method,
         headers: {
             'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
         }
     }
     if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))) {
@@ -81,6 +82,21 @@ export async function getZone() {
     return await fetchAPI('/zone', 'GET')
 }
 
+
+export async function nuovaSegnalazione(descrizione, indirizzo, foto) {
+    let data = await fetchAPI('/segnalazioni/nuovaSegnalazione', 'POST', {
+        "descrizione": descrizione,
+        "indirizzo": indirizzo,
+        "foto": foto
+    });
+    return data;
+}
+
+export async function mostraSegnalazioni() {
+    return await fetchAPI('/segnalazioni/mostraSegnalazioni', 'GET');
+    
+}
+
 export async function getTasse(type) {
     console.log("utils/requests.js: getTasse");
     const requestOptions = {
@@ -101,3 +117,4 @@ export async function getTasse(type) {
     return (rt)
 
     }
+

@@ -28,7 +28,7 @@ router.post(
         idSegnalazione = await TipoUtente.getUserType(user.userType).nuovaSegnalazione(
           req.user._id,
           req.body.descrizione,
-          req.body.zona,
+          req.body.indirizzo,
           req.body.foto
         );
         successRes(res, "OK", idSegnalazione, 201);
@@ -45,6 +45,7 @@ router.get(
     }),
     async function (req, res, next) {
       const user = await User.findOne({_id: req.user._id});
+      console.log(user)
 
       try {
         data = await TipoUtente.getUserType(user.userType).mostraSegnalazioni();

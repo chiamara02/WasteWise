@@ -35,6 +35,9 @@ export default {
         secondary: 'var(--secondary)',
         accent: 'var(--accent)',
       },
+      scale: {
+        '102': '1.02',
+      },
     },
   },
   plugins: [
