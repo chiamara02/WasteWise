@@ -60,6 +60,23 @@ export async function createAccount(email, password, nome, zona) {
     return data;
 }
 
+// Frontend only - logout a user dropping the cookie
+// returns an array, first element is a boolean that indicate the success of the request,
+// second element is the message
+export async function logout() {
+    // check if the cookie exists
+    if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt=')) && document.cookie.split(';').some((item) => item.trim().startsWith('userType='))) {
+        // if it exists, delete it
+        document.cookie = "jwt=; path=/; max-age=0; samesite=lax"
+        document.cookie = "userType=; path=/; max-age=0; samesite=lax"
+        // delete all from local storage
+        localStorage.clear()
+        return { "success": true, "message": "Logout effettuato con successo" }
+    } else {
+        return { "success": false, "message": "L'utente non è loggato" }
+    }
+}
+
 export async function getZone() {
     return await fetchAPI('/zone', 'GET')
 }

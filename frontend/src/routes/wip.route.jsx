@@ -20,7 +20,7 @@ export default function WipPage() {
     }, [location.pathname]);
 
     return (
-        <main className="relative h-screen">
+        <div className="">
             <img
                 src="wip.jpg"
                 alt=""
@@ -33,11 +33,11 @@ export default function WipPage() {
                     Rimani sintonizzato, il meglio deve ancora arrivare!
                 </p>
                 <div className="mt-10 flex justify-center ">
-                    <Link to={"/"} className="text-sm font-semibold leading-7 text-black">
+                    <Link to={"/dashboard"} className="text-sm font-semibold leading-7 text-black">
                         <span aria-hidden="true">&larr;</span> Ritorna alla Home
                     </Link>
                 </div>
             </div>
-        </main>
+        </div>
     )
 }
