@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './routes/homepage.route'
 import Dashboard from './routes/dashboard.route'
 import Login from './routes/login.route'
+import MostraTasse from './routes/tasse.route'
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
 
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
     element: <WipPage />,
   },
   {
+
+    path: '/tasse',
+    element: <MostraTasse />,
+  }
+  
     path: '/dashboard',
     element: <Dashboard />,
     children: [
@@ -61,6 +67,7 @@ const router = createBrowserRouter([
       },
     ]
   },
+
 ])
 
 

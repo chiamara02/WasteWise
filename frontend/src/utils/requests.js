@@ -80,3 +80,24 @@ export async function logout() {
 export async function getZone() {
     return await fetchAPI('/zone', 'GET')
 }
+
+export async function getTasse(type) {
+    console.log("utils/requests.js: getTasse");
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache'
+        }
+    }
+    if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))) {
+        let token = document.cookie.split('; ').find(row => row.startsWith('jwt=')).split('=')[1]
+        requestOptions['credentials'] = 'include'
+        requestOptions['headers']['Cookie'] = "jwt=" + token
+        requestOptions['headers']['stato']=type
+    }
+    let rt = await fetch(backendUrl.concat("/tasse/mostraTasse"), requestOptions)
+        .then(r => r.json())
+    return (rt)
+
+    }

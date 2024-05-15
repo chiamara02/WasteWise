@@ -20,6 +20,7 @@ router.get(
       session: false,
     }),
     async function (req, res, next){
+        console.log("routes/tasse.js: /mostraTasse");
         const user = await User.findOne({_id: req.user._id});
         try{
             const stato = req.headers.stato;
@@ -38,17 +39,5 @@ router.get(
 });
 
 
-router.post(
-    "/nuovaTassa",
-    // checkSchema(taxSchema),
-    passport.authenticate("jwt", {
-      session: false,
-    }),
-    async function (req, res, next) {
-      const val = validationResult(req);
-      const user = await User.findOne({_id: req.user._id});
-      if(!user){errorRes(res, error, error.message, error.code);}
-    }
-);
 
 module.exports = router;
