@@ -1,15 +1,8 @@
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from "yup"
-import { Link, Navigate, useLocation } from "react-router-dom"
+import { getTasse } from "../utils/requests";
 
-import { getTasse } from "../utils/requests"
-import { toast } from "react-toastify"
-import InputFeedback from "../components/inputFeedback.component"
-
-import Select from "../components/select.component";
 import SelectTax from "../components/selectTax.component";
 const tasse = getTasse("all");
 
@@ -30,25 +23,26 @@ export default function Tasse() {
     setTasse(fetchedTasse);
   };
 
-
- 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <SelectTax name="tax" label="Select tax" options={["all", "paid", "unpaid"]} onChangeAll={() => handleSelectChange("all")} onChangePaid={() => handleSelectChange("paid")} onChangeUnpaid={() => handleSelectChange("unpaid")} register={register} />
+          <SelectTax
+            name="tax"
+            label="Select tax"
+            options={["all", "paid", "unpaid"]}
+            onChangeAll={() => handleSelectChange("all")}
+            onChangePaid={() => handleSelectChange("pagate")}
+            onChangeUnpaid={() => handleSelectChange("non pagate")}
+            register={register}
+          />
 
           <h1 className="text-base font-semibold leading-6 text-gray-900">
-            Users
+            Tasse
           </h1>
-          <p className="mt-2 text-sm text-gray-700">
-            A list of all the users in your account including their name, title,
-            email and role.
-          </p>
+          <p className="mt-2 text-sm text-gray-700">Lista delle tasse</p>
         </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          
-        </div>
+        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none"></div>
       </div>
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -60,25 +54,25 @@ export default function Tasse() {
                     scope="col"
                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                   >
-                    Name
+                    Id
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Title
+                    Importo
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Email
+                    Scadenza
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Role
+                    Stato
                   </th>
                   <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                     <span className="sr-only">Edit</span>
@@ -97,12 +91,8 @@ export default function Tasse() {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {tax.stato}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.role}
-                    </td>
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      
-                    </td>
+
+                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"></td>
                   </tr>
                 ))}
               </tbody>

@@ -65,8 +65,9 @@ export async function getZone() {
 }
 
 export async function getTasse(type) {
+    console.log("utils/requests.js: getTasse");
     const requestOptions = {
-        method: method,
+        method: "GET",
         headers: {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache'
@@ -78,7 +79,7 @@ export async function getTasse(type) {
         requestOptions['headers']['Cookie'] = "jwt=" + token
         requestOptions['headers']['stato']=type
     }
-    let rt = await fetch(backendUrl.concat(endpoint), requestOptions)
+    let rt = await fetch(backendUrl.concat("/tasse/mostraTasse"), requestOptions)
         .then(r => r.json())
     return (rt)
 

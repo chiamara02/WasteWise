@@ -12,6 +12,18 @@ class Cittadino extends LoggedUser {
     static async nuovaSegnalazione(utente, descrizione, zona, foto){
         return GestoreSegnalazioni.nuovaSegnalazione(utente, descrizione, zona, foto);
     }
+
+    static async getAllTasse(idUser) {
+        return TaxHandler.getAllTasse(idUser);
+    }
+    
+    static async getPendingTasse(idUser) {
+        return TaxHandler.getTasseByStatus(idUser, "nonPagato");
+}
+
+    static async getPaidTasse(idUser){
+        return TaxHandler.getTasseByStatus(idUser, "pagato")
+    }
  
 }
 
