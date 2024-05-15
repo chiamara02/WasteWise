@@ -16,6 +16,7 @@ import {
     Recycle
 } from 'lucide-react'
 import { logout } from '../utils/requests'
+import { toast } from "react-toastify"
 import { AuroraBackground } from '../components/aurora.component'
 
 const nav = [
@@ -195,15 +196,22 @@ export default function Dashboard() {
                                     </ul>
                                 </li>
                                 <li className="-mx-6 mt-auto">
-                                    <Link
-                                        to="/"
-                                        onClick={logout}
+                                    <div
+                                        onClick={async () => {
+                                            let response = await logout();
+                                            if (response && response["success"]) {
+                                                toast.success("Logout effettuato con successo")
+                                                setRedirect("/")
+                                            } else {
+                                                toast.error("Qualcosa è andato storto")
+                                            }
+                                        }}
                                         className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-background hover:bg-primaryhover"
                                     >
                                         <ArrowLeftStartOnRectangleIcon className='h-6 w-6' />
                                         <span className="sr-only">Logout</span>
                                         <span aria-hidden="true">Logout</span>
-                                    </Link>
+                                    </div>
                                 </li>
                             </ul>
                         </nav>
@@ -216,12 +224,20 @@ export default function Dashboard() {
                         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </button>
                     <div className="flex-1 text-sm font-semibold leading-6 text-background">Dashboard</div>
-                    <Link to="/"
-                        onClick={logout}
+                    <div
+                        onClick={async () => {
+                            let response = await logout();
+                            if (response && response["success"]) {
+                                toast.success("Logout effettuato con successo")
+                                setRedirect("/")
+                            } else {
+                                toast.error("Qualcosa è andato storto")
+                            }
+                        }}
                     >
                         <span className="sr-only">Logout</span>
                         <ArrowLeftStartOnRectangleIcon className='h-6 w-6 text-background' />
-                    </Link>
+                    </div>
                 </div>
 
                 <main className="lg:pl-72">
