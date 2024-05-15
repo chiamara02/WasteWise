@@ -17,31 +17,8 @@ async function deleteAll() {
 
 async function populateAll() {
   await Zona.create(zone);
-  const createdUsers = [];
-  for (const userData of users) {
-    try {
-      const user = await User.create(userData);
-      createdUsers.push(user);
-      console.log(`User created: ${user.nome}`);
-    } catch (err) {
-      console.error(`Error creating user: ${userData.nome}`, err);
-    }
-  }
-
-  // Update tasseData with user IDs
-  for (const tasse of tasseData) {
-    const matchingUser = createdUsers.find(
-      (user) => user.userType === "cittadino" // Filter by userType
-    ); // Find matching Cittadino user
-    if (matchingUser) {
-      tasse.idUtente = matchingUser._id; // Assign user ID to tasse
-    } else {
-      console.warn(
-        `No Cittadino user found for tasse: ${JSON.stringify(tasse)}`
-      );
-    }
-    }
-    await Tasse.create(tasseData);
+  await User.create(users);
+  await Tasse.create(tasse);
 }
 
 async function manualPopulate() {
