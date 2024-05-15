@@ -1,17 +1,17 @@
 // Select component
-export default function SelectTax({ name, label, options, register, onChangeAll, onChangePaid, onChangeUnpaid }) {
+export default function SelectTax({ name, label, options, register, onChangeTutte, onChangePagate, onChangeNonPagate }) {
     const handleChange = (event) => {
       const selectedOption = event.target.value;
       // Call the appropriate function based on the selected option
       switch (selectedOption) {
-        case "all":
-          onChangeAll && onChangeAll(); // Check if the function is provided before calling it
+        case "Tutte":
+          onChangeTutte && onChangeTutte(); // Check if the function is provided before calling it
           break;
-        case "paid":
-          onChangePaid && onChangePaid();
+        case "Pagate":
+          onChangePagate && onChangePagate();
           break;
-        case "unpaid":
-          onChangeUnpaid && onChangeUnpaid();
+        case "NonPagate":
+          onChangeNonPagate && onChangeNonPagate();
           break;
         default:
           break;

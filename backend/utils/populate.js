@@ -18,7 +18,7 @@ async function deleteAll() {
 async function populateAll() {
   await Zona.create(zone);
   await User.create(users);
-  await Tasse.create(tasse);
+  await Tasse.create(tasseData);
 }
 
 async function manualPopulate() {
