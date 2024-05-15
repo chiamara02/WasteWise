@@ -8,8 +8,8 @@ class Cittadino extends LoggedUser {
         super();
     }
 
-    static async nuovaSegnalazione(utente, descrizione, zona, foto) {
-        return GestoreSegnalazioni.nuovaSegnalazione(utente, descrizione, zona, foto);
+    static async nuovaSegnalazione(utente, descrizione, indirizzo, foto) {
+        return GestoreSegnalazioni.nuovaSegnalazione(utente, descrizione, indirizzo, foto);
     }
 
     static async mostraSegnalazioni() {

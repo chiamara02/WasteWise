@@ -14,9 +14,8 @@ var SegnalazioneSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    zona:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Zona',
+    indirizzo:{
+        type: String,
         required: true,
     },
     foto:{

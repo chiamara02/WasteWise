@@ -6,18 +6,16 @@ const FailedDependencyException = require("../exceptions/FailedDependencyExcepti
 
 class GestoreSegnalazioni {
 
-    static async nuovaSegnalazione(utente, descrizione, zona, foto) {
+    static async nuovaSegnalazione(utente, descrizione, indirizzo, foto) {
         
         let user = await User.findById(utente);
         if (!user) throw new FailedDependencyException("User not found");
 
-        let zona_db = await Zona.findOne({ nome: zona });
-        if(!zona_db) throw new FailedDependencyException("Zone not found"); 
 
         let segnalazione = await Segnalazione.create({
             utente: utente,
             descrizione: descrizione,
-            zona: zona_db._id,
+            indirizzo: indirizzo,
             foto: foto
         });
         return segnalazione;
