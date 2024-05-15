@@ -39,7 +39,7 @@ export default function Login() {
     console.log(response)
     if (response && response["success"]) {
       toast.success("Login effettuato con successo")
-      setRedirect('/')
+      setRedirect('/dashboard')
     } else {
       reset()
       toast.error("Credenziali errate")

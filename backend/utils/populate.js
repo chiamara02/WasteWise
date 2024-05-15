@@ -3,7 +3,7 @@ const users = require("./testDataDump/users.json");
 const Zona = require("../db/zona").Zona;
 const zone = require("./testDataDump/zone.json");
 const Tasse = require("../db/tasse").Tasse;
-const tasse = require("./testDataDump/tasse.json");
+const tasseData = require("./testDataDump/tasse.json");
 
 const { db } = require("../db");
 
@@ -18,7 +18,7 @@ async function deleteAll() {
 async function populateAll() {
   await Zona.create(zone);
   await User.create(users);
-  await Tasse.create(tasse);
+  await Tasse.create(tasseData);
 }
 
 async function manualPopulate() {

@@ -155,18 +155,19 @@ const segnalazioneSchema = {
   descrizione:{
     notEmpty: true,
     isString: true,
-    required : true,
   },
+
   indirizzo: {
     notEmpty: true,
     isString: true,
     required : true,
   },
-  foto:{
+  
+  foto: {
+
     notEmpty: true,
     isString: true,
-    required : true,
-  }
+  },
 };
 
 
@@ -179,6 +180,6 @@ module.exports = {
   zonaSchema,
   userTypeSchema,
   changePasswordSchema,
-  segnalazioneSchema
+  segnalazioneSchema,
 };
 
