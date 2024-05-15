@@ -65,10 +65,10 @@ export async function getZone() {
     return await fetchAPI('/zone', 'GET')
 }
 
-export async function nuovaSegnalazione(descrizione, zona, foto) {
+export async function nuovaSegnalazione(descrizione, indirizzo, foto) {
     let data = await fetchAPI('/segnalazioni/nuovaSegnalazione', 'POST', {
         "descrizione": descrizione,
-        "zona": zona,
+        "indirizzo": indirizzo,
         "foto": foto
     });
     return data;
