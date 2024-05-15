@@ -58,7 +58,7 @@ export default function Signup() {
         console.log(response)
         if (response && response["success"]) {
             toast.success("Registrazione avvenuta con successo")
-            setRedirect('/')
+            setRedirect('/dashboard')
         } else {
             reset()
             toast.error("Qualcosa è andato storto, riprova!")
