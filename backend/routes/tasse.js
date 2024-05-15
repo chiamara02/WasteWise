@@ -11,7 +11,7 @@ const { checkSchema, validationResult } = require("express-validator");
 
 const TipoUtente = require("../utils/UserType");
 
-const taxSchema = require("../validation").taxSchema;
+// const taxSchema = require("../validation").taxSchema;
 const NotFoundException = require("../exceptions/NotFoundException");
 
 router.get(
@@ -40,7 +40,7 @@ router.get(
 
 router.post(
     "/nuovaTassa",
-    checkSchema(taxSchema),
+    // checkSchema(taxSchema),
     passport.authenticate("jwt", {
       session: false,
     }),
