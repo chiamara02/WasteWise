@@ -78,6 +78,7 @@ const router = createBrowserRouter([
         element: <WipPage />,
       },
     ]
+  
   },
 
 ])

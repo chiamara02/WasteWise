@@ -1,5 +1,5 @@
 const LoggedUser = require("./LoggedUser");
-const GestoreSegnalazioni = require("../handlers/GestoreSegnalazioni")
+const GestoreSegnalazioni = require("../handlers/SegnalazioniHandler")
 
 
 class Ente extends LoggedUser {
