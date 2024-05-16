@@ -1,0 +1,21 @@
+[
+    {
+      "idUtente": "5f2e3d8a8b9c6e0017e6d420",
+      "importo": 100,
+      "stato": "pagato",
+      "scadenza": "2024-06-30"
+    },
+    {
+      "idUtente": "5f2e3d8a8b9c6e0017e6d420",
+      "importo": 150,
+      "stato": "nonPagato",
+      "scadenza": "2024-07-15"
+    },
+    {
+      "idUtente": "5f2e3d8a8b9c6e0017e6d420",
+      "importo": 200,
+      "stato": "nonPagato",
+      "scadenza": "2024-07-10"
+    }
+  ]
+  

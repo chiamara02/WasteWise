@@ -1,14 +1,25 @@
 [
     {
+        "_id": "5f2e3d8a8b9c6e0017e6d420",
         "email": "asd@asd.asd",
+        "nome": "John",
+        "zona" : "5f2e3d8a8b9c6e0017e6d1a9",
         "password": "qwertyQ1!",
-        "username": "John",
-        "userType": "user"
+        "userType": "cittadino"
     },
     {
+        "_id": "5f2e3d8a8b9c6e0017e6d421",
         "email": "asd1@asd.asd",
+        "nome": "Paul",
+        "zona" : "5f2e3d8a8b9c6e0017e6d1a8",
         "password": "qwertyQ1!",
-        "username": "Paul",
-        "userType": "admin"
+        "userType": "ente"
+    },
+    {
+        "email": "asd12@asd.asd",
+        "nome": "John",
+        "zona" : "5f2e3d8a8b9c6e0017e6d1a3",
+        "password": "qwertyQ1!",
+        "userType": "operatore"
     }
 ]

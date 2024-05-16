@@ -9,8 +9,6 @@ services:
     container_name: mongo-WasteWise-container
     image: mongo
     restart: always
-    logging:
-      driver: none
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: PgeCz77fvd9y65jY9QLk

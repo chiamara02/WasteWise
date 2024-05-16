@@ -1,20 +1,24 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// User schema
-var UserSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({    
+    nome: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
         unique: true,
-    },
+    }, 
     password: {
         type: String,
         required: true,
     },
-    username: {
-        type: String,
-        required: true,
+    zona: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Zona',                  
+        required: true
     },
     userType: {
         type: String,
@@ -22,8 +26,9 @@ var UserSchema = new mongoose.Schema({
         enum: [
             "abstractUser",
             "anonymousUser",
-            "admin",
-            "user",
+            "cittadino",
+            "ente",
+            "operatore"
         ],
     },
 });

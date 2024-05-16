@@ -14,7 +14,9 @@ class AnonymousUser extends AbstractUser {
         return await UserHandler.login(email, password);
     }
 
-    static async createAccount(username, userType, email, password) {
-        return await UserHandler.createAccount(username, userType, email, password);
+    static async createAccount(email, password, nome, zona, userType) {
+        return await UserHandler.createAccount(email, password, nome, zona, userType);
     }
 }
+
+module.exports = AnonymousUser;
