@@ -14,8 +14,11 @@ async function fetchAPI(endpoint, method, body = {}) {
         requestOptions['credentials'] = 'include'
         requestOptions['headers']['Cookie'] = "jwt=" + token
     }
-    if (method != 'GET') {
-        requestOptions["body"] = JSON.stringify(body)
+    if (method === 'GET' && Object.keys(body).length > 0) {
+        const urlParams = new URLSearchParams(body).toString();
+        endpoint = `${endpoint}?${urlParams}`;
+    } else if (method !== 'GET') {
+        requestOptions["body"] = JSON.stringify(body);
     }
     let rt = await fetch(backendUrl.concat(endpoint), requestOptions)
         .then(r => r.json())
@@ -84,7 +87,7 @@ export async function getZone() {
 
 
 export async function nuovaSegnalazione(descrizione, indirizzo, foto) {
-    let data = await fetchAPI('/segnalazioni/nuovaSegnalazione', 'POST', {
+    let data = await fetchAPI('/segnalazioni', 'POST', {
         "descrizione": descrizione,
         "indirizzo": indirizzo,
         "foto": foto
@@ -93,28 +96,15 @@ export async function nuovaSegnalazione(descrizione, indirizzo, foto) {
 }
 
 export async function mostraSegnalazioni() {
-    return await fetchAPI('/segnalazioni/mostraSegnalazioni', 'GET');
+    return await fetchAPI('/segnalazioni', 'GET');
     
 }
 
-export async function getTasse(type) {
-    console.log("utils/requests.js: getTasse");
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache'
-        }
+export async function getTasse(stato = undefined) {
+    let params = {}
+    if (stato) {
+        params["stato"] = stato
     }
-    if (document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))) {
-        let token = document.cookie.split('; ').find(row => row.startsWith('jwt=')).split('=')[1]
-        requestOptions['credentials'] = 'include'
-        requestOptions['headers']['Cookie'] = "jwt=" + token
-        requestOptions['headers']['stato']=type
-    }
-    let rt = await fetch(backendUrl.concat("/tasse/mostraTasse"), requestOptions)
-        .then(r => r.json())
-    return (rt)
-
-    }
+    return await fetchAPI('/tasse', 'GET', params);
+}
 

@@ -11,7 +11,7 @@ const { checkSchema, validationResult, check } = require("express-validator");
 const segnalazioneSchema = require("../validation").segnalazioneSchema;
 
 router.post(
-    "/nuovaSegnalazione",
+    "/",
     checkSchema(segnalazioneSchema),
     passport.authenticate("jwt", {
       session: false,
@@ -39,13 +39,12 @@ router.post(
   );
 
 router.get(
-    "/mostraSegnalazioni", 
+    "/", 
     passport.authenticate("jwt", {
       session: false,
     }),
     async function (req, res, next) {
       const user = await User.findOne({_id: req.user._id});
-      console.log(user)
 
       try {
         data = await TipoUtente.getUserType(user.userType).mostraSegnalazioni();

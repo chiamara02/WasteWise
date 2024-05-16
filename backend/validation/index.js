@@ -147,27 +147,34 @@ const changePasswordSchema = {
 };
 
 const segnalazioneSchema = {
-  // utente :{
-  //   notEmpty: true,
-  //   isString: true,
-  //   required: true
-  // },
   descrizione:{
     notEmpty: true,
     isString: true,
   },
-
   indirizzo: {
     notEmpty: true,
     isString: true,
   },
-  
   foto: {
-
     notEmpty: true,
     isString: true,
   },
 };
+
+const taxSchema = {
+  stato: {
+    optional: true,
+    isIn: {
+      options: [
+        [
+          "pagato",
+          "nonPagato",
+          undefined
+        ],
+      ],
+    },
+  }
+}
 
 
 module.exports = {
@@ -180,5 +187,6 @@ module.exports = {
   userTypeSchema,
   changePasswordSchema,
   segnalazioneSchema,
+  taxSchema,
 };
 
