@@ -21,7 +21,7 @@ export default function Radio({ label, options, selected, setSelected }) {
                                     option.inStock ? 'cursor-pointer focus:outline-none' : 'cursor-not-allowed opacity-25',
                                     active ? 'ring-2 ring-primary ring-offset-2' : '',
                                     checked
-                                        ? 'bg-primary text-background hover:bg-primary-hover'
+                                        ? 'bg-primary text-background hover:bg-primaryhover'
                                         : 'ring-1 ring-inset ring-backgroundmuted bg-background text-text hover:bg-backgroundmuted',
                                     'flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1'
                                 )
