@@ -1,7 +1,7 @@
 const LoggedUser = require("./LoggedUser");
 const TaxHandler = require("../handlers/TaxHandler");
 
-const GestoreSegnalazioni = require("../handlers/GestoreSegnalazioni")
+const GestoreSegnalazioni = require("../handlers/SegnalazioniHandler")
 
 class Cittadino extends LoggedUser {
     constructor() {

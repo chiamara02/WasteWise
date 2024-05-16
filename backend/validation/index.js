@@ -160,7 +160,6 @@ const segnalazioneSchema = {
   indirizzo: {
     notEmpty: true,
     isString: true,
-    required : true,
   },
   
   foto: {
