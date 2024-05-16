@@ -63,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/tasse',
-        element: <WipPage />,
+        element: <MostraTasse />,
       },
       {
         path: '/dashboard/prenotazioni',
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/segnalazioni',
-        element: <WipPage />,
+        element: <NuovaSegnalazione />,
       },
       {
         path: '/dashboard/sondaggi',
