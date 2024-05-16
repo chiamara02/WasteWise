@@ -12,7 +12,7 @@ var TasseSchema = new mongoose.Schema({
         type: Date,
         required : true,
     },
-    statoPagamento:{
+    stato:{
         type: String,
         required: true,
         enum : [
@@ -20,10 +20,10 @@ var TasseSchema = new mongoose.Schema({
             "nonPagato",
         ],
     },
-    importo:[{
+    importo: {
         type: Number,
         required: true,
-    }],
+    },
 });
 
 var tasse = new mongoose.model("Tasse", TasseSchema);

@@ -5,48 +5,30 @@ const WrongPasswordException = require("../exceptions/WrongPasswordException");
 
 
 class TaxHandler {
-    static async getAllTasse(idUtente){
+    static async getTasse(idUtente, stato = undefined) {
         //check if the user exist
-        console.log("taxHandler: getAllTasse");
         let user = await User.findById(idUtente);
         if (!user) throw new NotFoundException("User not found");
-        
-        try {
-            //let taxes = await TasseSchema.find({idUtente : idUser });
-            //return tax list
-            let taxes = await Tasse.find({idUtente : idUtente});
-            
-            return taxes;
-        } catch (error) {
-            throw new NotFoundException("Tax not found for given user");
-        }
-    }
 
-    static async getTasseByStatus(idUtente, stato){
-        //check if the user exist
-        console.log("taxHandler: getAllTasse" , {stato});
-        console.log("taxHandler: getAllTasse" , {idUtente});
-        let user = await User.findById(idUtente);
-        if (!user) throw new NotFoundException("User not found");
-        
+        let fieldsToSelect = "scadenza stato importo -_id"
+        let query = { idUtente: idUtente };
+        if (stato) {
+            query.stato = stato;
+        }
+
         try {
-            //let taxes = await TasseSchema.find({idUtente : idUser, statoPagamento : stato});
-            let taxes = await Tasse.find({idUtente : idUtente, statoPagamento : stato});
-            
-            return taxes;
-            //return tax list
-            
+            return await Tasse.find(query).sort({scadenza: -1}).limit(20).select(fieldsToSelect);
         } catch (error) {
             throw new NotFoundException("Tax not found for given user and with given state");
         }
     }
 
-    static async postTasse(utente, data, stato, importo){
+    static async postTasse(utente, data, stato, importo) {
         let tasse = await Tasse.create({
-            idUtente : utente,
-            scadenza : data,
-            statoPagamento : stato,
-            importo : importo
+            idUtente: utente,
+            scadenza: data,
+            stato: stato,
+            importo: importo
         });
         return tasse;
     }

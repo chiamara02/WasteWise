@@ -16,7 +16,7 @@ import Login from './routes/login.route'
 
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
-import MostraTasse from './routes/tasse.route'
+import TasseRoute from './routes/tasse.route'
 
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
@@ -31,27 +31,14 @@ const router = createBrowserRouter([
     path: '/signup',
     element: <Signup />,
     loader: signupLoader,
-  },  
+  },
   {
     path: '/login',
     element: <Login />,
   },
   {
-    path: '/nuovaSegnalazione',
-    element: <NuovaSegnalazione />
-  },
-  {
-    path: '/mostraSegnalazioni',
-    element: <MostraSegnalazioni />
-  },
-  {
     path: '/wip',
     element: <WipPage />,
-  },
-  {
-
-    path: '/tasse',
-    element: <MostraTasse />,
   },
   {
     path: '/dashboard',
@@ -63,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/tasse',
-        element: <MostraTasse />,
+        element: <TasseRoute />,
       },
       {
         path: '/dashboard/prenotazioni',

@@ -1,124 +1,57 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
+import PageHeading from "../components/pageHeading.component";
+import Radio from "../components/radio.component";
+import TableCard from "../components/tableCard.component";
 import { getTasse } from "../utils/requests";
-import HomePageButton from "../components/homepagebutton.component";
+import { useState, useEffect } from "react"
 
-import SelectTax from "../components/selectTax.component";
-import HomePage from "./homepage.route";
+const options = [
+    { name: 'Tutte', inStock: true },
+    { name: 'Pagate', inStock: true },
+    { name: 'Non Pagate', inStock: true }
+]
 
-const MostraTasse = () => {
-  const [tasse, setTasse] = useState([]);
-  const { register } = useForm();
+const lables = [
+    undefined,
+    "pagato",
+    "nonPagato"
+]
 
-  const fetchTasse = async (input) => {
-    let s = await getTasse(input);
-    console.log(s);
-    if (s["success"]) {
-      setTasse(s["data"]);
-    }
-  };
+export default function Tasse() {
+    const [data, setData] = useState([])
+    const [selected, setSelected] = useState(0)
 
-  useEffect(() => {
-    fetchTasse("all");
-    console.log(tasse);
-  }, []);
+    useEffect(() => {
+        let fetch = async () => {
+            let data = await getTasse(lables[selected])
+            let formattedData = data.data.map(item => {
+                // Format the date to dd/mm/yyyy
+                const date = new Date(item.scadenza);
+                const formattedDate = date.toLocaleDateString('it-IT');
 
-  const StatoToString = (input) => {
-    if ((input == "pagato")) {
-      return input;
-    }
-    return "non pagato";
-  };
+                // Capitalize the stato
+                const formattedStato = item.stato === 'pagato' ? 'Pagato' : 'Non Pagato';
 
-  const handleSelectChange = async (input) => {
-    fetchTasse(input);
-  };
+                // Convert importo to a string with the euro symbol
+                const formattedImporto = `${item.importo}€`;
 
-  return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <SelectTax
-          name="tax"
-          label="Seleziona tipo di tasse da visualizzare"
-          options={["Tutte", "Pagate", "NonPagate"]}
-          onChangeTutte={() => handleSelectChange("all")}
-          onChangePagate={() => handleSelectChange("pagate")}
-          onChangeNonPagate={() => handleSelectChange("non pagate")}
-          register={register}
-        />
-      </div>
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
-            Tasse
-          </h1>
-          <p className="mt-2 text-sm text-gray-700">Lista delle tasse</p>
+                return {
+                    scadenza: formattedDate,
+                    stato: formattedStato,
+                    importo: formattedImporto
+                };
+            });
+            setData(formattedData)
+        }
+        fetch()
+    }, [selected])
+
+    return (
+        <div className="p-5">
+            <PageHeading title={"Monitora le tue tasse"} />
+            <div className="mt-5">
+                <Radio label={"Seleziona un filtro"} options={options} selected={selected} setSelected={setSelected}  />
+                <TableCard cols={["scadenza", "importo", "stato"]} data={data} colsTitles={["Scadenza", "Importo", "Stato"]} />
+            </div>
         </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none"></div>
-      </div>
-      <div className="mt-8 flow-root">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="min-w-full divide-y divide-gray-300">
-              <thead>
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
-                  >
-                    Id
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Importo
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Scadenza
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Stato
-                  </th>
-                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                    <span className="sr-only">Edit</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {tasse.map((tax) => (
-                  <tr key={tax._Id}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                      {tax._id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {tax.importo} €
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {tax.scadenza}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {StatoToString(tax.statoPagamento)}
-                    </td>
-
-                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <HomePageButton />
-      </div>
-    </div>
-  );
-};
-
-export default MostraTasse;
+    )
+}

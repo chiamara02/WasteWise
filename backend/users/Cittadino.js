@@ -16,18 +16,9 @@ class Cittadino extends LoggedUser {
         return GestoreSegnalazioni.mostraSegnalazioni();
     }
 
-    static async getAllTasse(idUser) {
-        return TaxHandler.getAllTasse(idUser);
+    static async getTasse(idUser, stato = undefined) {
+        return TaxHandler.getTasse(idUser, stato);
     }
-
-    static async getPendingTasse(idUser) {
-        return TaxHandler.getTasseByStatus(idUser, "nonPagato");
-    }
-
-    static async getPaidTasse(idUser) {
-        return TaxHandler.getTasseByStatus(idUser, "pagato")
-    }
-
 }
 
 module.exports = Cittadino;
