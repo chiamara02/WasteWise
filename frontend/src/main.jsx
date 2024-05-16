@@ -52,8 +52,8 @@ const router = createBrowserRouter([
 
     path: '/tasse',
     element: <MostraTasse />,
-  }
-  
+  },
+  {
     path: '/dashboard',
     element: <Dashboard />,
     children: [
@@ -78,6 +78,7 @@ const router = createBrowserRouter([
         element: <WipPage />,
       },
     ]
+  
   },
 
 ])

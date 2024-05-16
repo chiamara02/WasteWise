@@ -5,7 +5,7 @@ const HomePageButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/');
+    navigate('/dashboard');
   };
 
   return (
