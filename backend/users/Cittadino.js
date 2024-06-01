@@ -19,6 +19,18 @@ class Cittadino extends LoggedUser {
     static async getTasse(idUser, stato = undefined) {
         return TaxHandler.getTasse(idUser, stato);
     }
+
+    static async getSondaggio(idSondaggio) {
+        return SondaggiHandler.getSondaggio(idSondaggio);
+    }
+
+    static async postQuestionario(idUtente, idSondaggio) {
+        return SondaggiHandler.postQuestionario(idUtente, idSondaggio);
+    }
+
+    static async postRisposta(idQuestionario, idDomanda, risposta) {
+        return SondaggiHandler.postRisposta(idQuestionario, idDomanda, risposta);
+    }
 }
 
 module.exports = Cittadino;
