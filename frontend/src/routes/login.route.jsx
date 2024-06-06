@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
-import {Link, Navigate, useLocation } from "react-router-dom"
+import { Link, Navigate, useLocation } from "react-router-dom"
 
 import { login } from "../utils/requests"
 import { toast } from "react-toastify"
@@ -36,15 +36,22 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     let response = await login(data.email, data.password)
-    console.log(response)
     if (response && response["success"]) {
       toast.success("Login effettuato con successo")
-      setRedirect('/dashboard')
+      const userType = response.data.userType;
+      if(userType === "cittadino")
+        setRedirect('/dashboard');
+      else if(userType === "ente")
+        setRedirect('/management');
+      else 
+      setRedirect('/operator');
+
     } else {
       reset()
       toast.error("Credenziali errate")
     }
   }
+
 
 
   useEffect(() => {

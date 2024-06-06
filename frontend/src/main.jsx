@@ -18,6 +18,8 @@ import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
 import TasseRoute from './routes/tasse.route'
 
+import ManagementD from './routes/management.route'
+
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
 
@@ -64,9 +66,26 @@ const router = createBrowserRouter([
         path: '/dashboard/sondaggi',
         element: <WipPage />,
       },
-    ]
-  
+    ]  
   },
+  {
+    path: '/management',
+    element: <ManagementD />,
+    children: [
+      {
+        path:'/management/segnalazioni',
+        element: <MostraSegnalazioni />,
+      },
+      {
+        path:'/management/sondaggi',
+        
+      }
+    ]
+    
+  },
+  {
+    path: '/operator'
+  }
 
 ])
 
