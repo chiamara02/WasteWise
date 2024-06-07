@@ -20,23 +20,20 @@ import { toast } from "react-toastify"
 import { AuroraBackground } from '../components/aurora.component'
 
 const nav = [
-    // { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: false },
-    { name: 'Calendario', href: '/dashboard/calendario', icon: CalendarDaysIcon, current: false },
-    { name: 'Tasse', href: '/dashboard/tasse', icon: BanknotesIcon, current: false },
-    { name: 'Prenotazioni', href: '/dashboard/prenotazioni', icon: BookmarkIcon, current: false },
-    { name: 'Segnalazioni', href: '/dashboard/segnalazioni', icon: BellAlertIcon, current: false },
-    { name: 'Sondaggi', href: '/dashboard/sondaggi', icon: ChartPieIcon, current: false },
+    // { name: 'Dashboard', href: '/management', icon: HomeIcon, current: false },
+    { name: 'Segnalazioni', href: '/management/segnalazioni', icon: BellAlertIcon, current: false },
+    { name: 'Sondaggi', href: '/management/sondaggi', icon: ChartPieIcon, current: false },
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
+export default function ManagementD() {
     const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('jwt='))
     const userType = document.cookie.split(';').some((item) => item.trim().startsWith('userType=')) ? document.cookie.split('; ').find(row => row.startsWith('userType=')).split('=')[1] : null
-    const isCittadino = userType === "cittadino"
-    const [redirect, setRedirect] = useState(isLoggedIn && isCittadino ? false : '/login')
+    const isEnte = userType === "ente"    
+    const [redirect, setRedirect] = useState(isLoggedIn && isEnte? false : '/login')
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const [navigation, setNavigation] = useState(nav)
     const location = useLocation()
@@ -59,7 +56,7 @@ export default function Dashboard() {
     }, [location.pathname])
 
 
-    if (!isLoggedIn || !isCittadino) {
+    if (!isLoggedIn || !isEnte) {
         return (
             <>
                 {redirect && <Navigate to={redirect} />}
@@ -115,7 +112,7 @@ export default function Dashboard() {
                                     {/* Sidebar component, swap this element with another sidebar if you like */}
                                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-primary px-6 pb-2">
                                         <div className="flex h-16 shrink-0 items-center">
-                                            <Link to={"/dashboard"}>
+                                            <Link to={"/management"}>
                                                 <Recycle
                                                     className="h-10 w-auto text-background"
                                                 />
@@ -163,7 +160,7 @@ export default function Dashboard() {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-primary px-6">
                         <div className="flex h-16 shrink-0 items-center">
-                            <Link to={"/dashboard"}>
+                            <Link to={"/management"}>
                                 <Recycle
                                     className="h-10 w-auto text-background"
                                 />
@@ -243,9 +240,9 @@ export default function Dashboard() {
                 </div>
 
                 <main className="lg:pl-72">
-                    {location.pathname === '/dashboard' || location.pathname === '/dashboard/' ?
+                    {location.pathname === '/management' || location.pathname === '/management/' ?
                         <AuroraBackground>
-                            <h1 className="text-5xl md:text-6xl 2xl:text-9xl font-semibold px-6 text-primary">Benvenuti su WasteWise</h1>
+                            <h1 className="text-5xl md:text-6xl 2xl:text-9xl font-semibold px-6 text-primary">Benvenuto sul tuo portale!</h1>
                         </AuroraBackground> :
                         <Outlet />
                     }
