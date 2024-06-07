@@ -4,6 +4,11 @@ const Zona = require("../db/zona").Zona;
 const zone = require("./testDataDump/zone.json");
 const Tasse = require("../db/tasse").Tasse;
 const tasseData = require("./testDataDump/tasse.json");
+const Tappa  = require("../db/tappa").Tappa;
+const tappe = require("./testDataDump/tappe.json");
+const Percorso = require("../db/percorso").Percorso;
+const percorsi = require("./testDataDump/percorsi.json");
+
 
 const { db } = require("../db");
 
@@ -13,12 +18,16 @@ async function deleteAll() {
   await User.deleteMany({}, options); 
   await Zona.deleteMany({}, options); 
   await Tasse.deleteMany({}, options);
+  await Tappa.deleteMany({}, options);
+  await Percorso.deleteMany({}, options);
 }
 
 async function populateAll() {
   await Zona.create(zone);
   await User.create(users);
   await Tasse.create(tasseData);
+  await Tappa.create(tappe);
+  await Percorso.create(percorsi);
 }
 
 async function manualPopulate() {
