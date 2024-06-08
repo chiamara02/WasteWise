@@ -117,45 +117,7 @@ const tappaSchema = {
   tappa: {
     notEmpty: true,
     errorMessage: "zone is not valid",
-    isIn: {
-      options: [
-        [
-          "Via dei Valoni",
-          "Via della Resistenza",
-          "Via F.lli Perini",
-          "Via Sommarive",
-          "Via Castel di Pietra",
-          "Via dei Pascoli",
-          "Via alla Cascata",
-          "Via della Salvia",
-          "Via della Flora",
-          "Via del Dos del Castello",
-          "Via della Croce",
-          "Via dei Colli",
-          "Via al Casteller",
-          "Via Menguzzato",
-          "Via Ponte Alto",
-          "Via Stella",
-          "Via Cà dei Gai",
-          "Via dei Pomari",
-          "Via Donatori di Sangue",
-          "Via delle Ginestre",
-          "Via del Forte",
-          "Via della Roggia",
-          "Via alla Grotta",
-          "Via delle Betulle",
-          "Via ai Bersagli",
-          "Via Don Minzoni",
-          "Via del Paradiso",
-          "Via dei Tigli",
-          "Via Marighetto",
-          "Via Santa Caterina",
-          "Via di Sopra",
-          "Via della Cervara"
-
-        ],
-      ],
-    },
+    isString : true
   },
 };
 

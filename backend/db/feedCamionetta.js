@@ -8,13 +8,12 @@ const feedCamionettaSchema = new mongoose.Schema({
   },
   operatore: {
     type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',                  
-        required: true,
+    ref: 'User',
+    required: true,
   },
   data: {
     type: Date,
-    default: Date.now,
-    required: true
+    default: Date.now
   },
   tappaAttuale: {
     type: mongoose.Schema.Types.ObjectId,
@@ -25,5 +24,5 @@ const feedCamionettaSchema = new mongoose.Schema({
 
 const FeedCamionetta = mongoose.model('FeedCamionetta', feedCamionettaSchema);
 module.exports = {
-    FeedCamionetta: FeedCamionetta,
+  FeedCamionetta: FeedCamionetta,
 }
