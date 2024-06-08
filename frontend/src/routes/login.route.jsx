@@ -44,7 +44,7 @@ export default function Login() {
       else if(userType === "ente")
         setRedirect('/management');
       else 
-      setRedirect('/operator');
+      setRedirect('/operatore');
 
     } else {
       reset()
