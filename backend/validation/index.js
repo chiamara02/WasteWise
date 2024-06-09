@@ -161,6 +161,33 @@ const segnalazioneSchema = {
   },
 };
 
+const prenotazioneSchema = {
+  descrizione:{
+    notEmpty: true,
+    isString: true,
+  },
+  dateUtili:[{
+    notEmpty: true,
+    isDate: true,
+  }],
+  stato: {
+    notEmpty: true,
+    isIn: {
+      options: [
+        [
+          "inAttesa",
+          "confermata",
+          "rifiutata",
+          "completata"
+        ],
+      ],
+    },
+  },
+  dataEffettiva:{
+    isDate: true,
+  },
+};
+
 const taxSchema = {
   stato: {
     optional: true,
@@ -188,5 +215,6 @@ module.exports = {
   changePasswordSchema,
   segnalazioneSchema,
   taxSchema,
+  prenotazioneSchema,
 };
 
