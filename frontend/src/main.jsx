@@ -19,9 +19,7 @@ import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
 import TasseRoute from './routes/tasse.route'
 
 import ManagementD from './routes/management.route'
-import Percorsi from './routes/percorsi.route'
-
-import PercorsoD from './routes/operatore.route'
+import Percorsi, {loader, loader as percorsiLoader } from './routes/percorsi.route'
 
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
@@ -94,6 +92,7 @@ const router = createBrowserRouter([
       {
         path:'/operatore/percorsi',
         element: <Percorsi />,
+        loader: percorsiLoader
       }
     ]
   },
