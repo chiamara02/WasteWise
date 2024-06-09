@@ -13,7 +13,8 @@ import {
     BellAlertIcon
 } from '@heroicons/react/24/outline'
 import {
-    Recycle
+    Recycle,
+    Truck
 } from 'lucide-react'
 import { logout } from '../utils/requests'
 import { toast } from "react-toastify"
@@ -24,6 +25,7 @@ const nav = [
     { name: 'Calendario', href: '/dashboard/calendario', icon: CalendarDaysIcon, current: false },
     { name: 'Tasse', href: '/dashboard/tasse', icon: BanknotesIcon, current: false },
     { name: 'Prenotazioni', href: '/dashboard/prenotazioni', icon: BookmarkIcon, current: false },
+    { name: 'Tracking', href: '/dashboard/tracking', icon: Truck, current: false },
     { name: 'Segnalazioni', href: '/dashboard/segnalazioni', icon: BellAlertIcon, current: false },
     { name: 'Sondaggi', href: '/dashboard/sondaggi', icon: ChartPieIcon, current: false },
 ]

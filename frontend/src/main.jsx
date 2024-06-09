@@ -17,6 +17,7 @@ import Login from './routes/login.route'
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
 import TasseRoute from './routes/tasse.route'
+import Tracking from './routes/mostratracking.route'
 
 import ManagementD from './routes/management.route'
 import Percorsi, {loader, loader as percorsiLoader } from './routes/percorsi.route'
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/prenotazioni',
         element: <WipPage />,
+      },
+      {
+        path: '/dashboard/tracking',
+        element: <Tracking />,
       },
       {
         path: '/dashboard/segnalazioni',
