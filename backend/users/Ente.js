@@ -16,7 +16,7 @@ class Ente extends LoggedUser {
         return SondaggiHandler.nuovoSondaggio(titolo, domande);
     }
 
-    static async mostraQuestionari(userId, sondaggioId) {
+    static async mostraQuestionariCompilati(userId, sondaggioId) {
         return SondaggiHandler.mostraQuestionari(userId, sondaggioId);
     }
 }

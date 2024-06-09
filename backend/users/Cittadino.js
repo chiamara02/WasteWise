@@ -20,12 +20,12 @@ class Cittadino extends LoggedUser {
         return TaxHandler.getTasse(idUser, stato);
     }
 
-    static async compilaSondaggio(sondaggio, utente, risposte) {
+    static async compilaQuestionario(sondaggio, utente, risposte) {
         return SondaggiHandler.nuovoQuestionario(sondaggio, utente, risposte);
     }
 
-    static async mostarSondaggi(){
-        return SondaggiHandler.mostraSondaggi();
+    static async mostraSondaggi(){
+        return SondaggiHandler.mostraSondaggiDisponibili();
     }
 
     

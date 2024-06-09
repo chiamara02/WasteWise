@@ -12,15 +12,18 @@ class SondaggiHandler {
         return sondaggio;
     }
 
-    static async mostraSondaggi() {
+    static async mostraSondaggiDisponibili() {
+        //trova tutti i sondaggi non gia compilati dall'utente
+        let sondaggiNonCompilati = await Sondaggio.find({
+            _id: { $nin: await Questionario.distinct('sondaggio', { utente: { $exists: true } }) }
+        });
+
         // Trova tutte le istanze del modello sondaggio
         let sondaggi = await Sondaggio.find();
-        return sondaggi;
+        return sondaggiNonCompilati;
     }
 
     static async nuovoQuestionario(sondaggio, utente, risposte) {
-        let user = await User.findById(utente);
-        if (!user) throw new FailedDependencyException("User not found");
 
         let questionario = await Questionario.create({
             sondaggio: sondaggio,

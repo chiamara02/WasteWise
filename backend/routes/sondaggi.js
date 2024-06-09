@@ -10,7 +10,7 @@ const questionarioSchema = require("../validation/index").questionarioSchema;
 
 // Sondaggi
 //cittadino
-router.post(
+router.get(
   "/sondaggio",
   passport.authenticate("jwt", {
     session: false,
@@ -19,7 +19,7 @@ router.post(
     const user = await User.findOne({ _id: req.user._id });
 
     try {
-      idSondaggio = await TipoUtente.getUserType(user.userType).nuovoSondaggio(
+      idSondaggio = await TipoUtente.getUserType(user.userType).mostraSondaggi(
         req.body.titolo,
         req.body.domande
       );
@@ -31,7 +31,7 @@ router.post(
 );
 
 //ente
-router.get(
+router.post(
   "/sondaggio",
   passport.authenticate("jwt", {
     session: false,
@@ -40,7 +40,29 @@ router.get(
     const user = await User.findOne({ _id: req.user._id });
 
     try {
-      data = await TipoUtente.getUserType(user.userType).mostraQuestionari(
+      data = await TipoUtente.getUserType(user.userType).nuovoSondaggio(
+        req.body.titolo,
+        req.body.domande
+      );
+      successRes(res, "OK", data, 200);
+    } catch (error) {
+      errorRes(res, error, error.message, error.code);
+    }
+  }
+);
+
+// Questionari
+//ente
+router.get(
+  "/questionario",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  async function (req, res, next) {
+    const user = await User.findOne({ _id: req.user._id });
+
+    try {
+      data = await TipoUtente.getUserType(user.userType).mostraQuestionariCompilati(
         req.query.userId,
         req.query.sondaggioId
       );
@@ -51,26 +73,7 @@ router.get(
   }
 );
 
-// Questionari
 //cittadino
-router.get(
-  "/questionario",
-  passport.authenticate("jwt", {
-    session: false,
-  }),
-  async function (req, res, next) {
-    const user = await User.findOne({ _id: req.user._id });
-
-    try {
-      data = await TipoUtente.getUserType(user.userType).mostraSondaggi();
-      successRes(res, "OK", data, 200);
-    } catch (error) {
-      errorRes(res, error, error.message, error.code);
-    }
-  }
-);
-
-//ente
 router.post(
   "/questionario",
   checkSchema(questionarioSchema),
