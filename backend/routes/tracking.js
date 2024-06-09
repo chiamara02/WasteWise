@@ -72,11 +72,23 @@ router.get(
         }
         let zonaId = req.query.zona;
         const user = await User.findOne({ _id: req.user._id });
+        if (zonaId === "null" && user.userType === "cittadino") {
+            zonaId = user.zona.toString()
+        }
 
         try {
             let data = await UserType.getUserType(user.userType).getFeedAttuale(zonaId);
-            if(user.userType === "cittadino") {
+            data.canOperate = (
+                !data.isInProgress || (
+                    user.userType === "operatore" && // e' un operatore
+                    data.operator && // tracking e' partito
+                    data.operator._id.toString() === req.user._id.toString() // utente che fa la richiesta e' lo stesso
+                )
+            )
+
+            if (user.userType === "cittadino") {
                 delete data.operator;
+                delete data.canOperate;
             }
             successRes(res, "OK", data, 200);
 
@@ -100,17 +112,24 @@ router.post(
             const zona = req.body.zona
             const user = await User.findOne({ _id: req.user._id });
             let feed = await UserType.getUserType(user.userType).getFeedAttuale(zona);
-            console.log(feed)
-            
+
             if (feed.operator && feed.operator._id.toString() !== req.user._id.toString()) throw new UnauthorizedException("Operazione non consentita")
             if (!feed.nextStop) throw new FailedDependencyException("Corsa già terminata")
-            
+
             let update = await UserType.getUserType(user.userType).updateTappaAttuale(
                 zona,
                 feed.nextStop._id,
                 req.user._id
             );
             feed = await UserType.getUserType(user.userType).getFeedAttuale(zona);
+            
+            feed.canOperate = (
+                !feed.isInProgress || (
+                    user.userType === "operatore" && // e' un operatore
+                    feed.operator && // tracking e' partito
+                    feed.operator._id.toString() === req.user._id.toString() // utente che fa la richiesta e' lo stesso
+                )
+            )
 
             successRes(res, "OK", feed, 200);
         } catch (error) {
