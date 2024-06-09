@@ -1,32 +1,40 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-// Schema del sondaggio
-const sondaggioSchema = new mongoose.Schema({
-  domande: [{ type: mongoose.Schema.Types.ObjectId, ref: "Domanda" }],
+// Schema per Sondaggio
+const SondaggioSchema = new mongoose.Schema({
+    titolo: {
+        type: String,
+        required: true
+    },
+    domande: {
+        type: [String],
+        required: true
+    }
 });
 
-// Schema della domanda
-const domandaSchema = new mongoose.Schema({
-  idDomanda: Number,
-  testo: String,
+var Sondaggio = mongoose.model('Sondaggio', SondaggioSchema);
+
+// Schema per Questionario
+const QuestionarioSchema = new mongoose.Schema({
+    sondaggio: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sondaggio',
+        required: true
+    },
+    utente: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    risposte: {
+        type: [String],
+        required: true
+    }
 });
 
-// Schema del questionario
-const questionarioSchema = new mongoose.Schema({
-  utente: { type: mongoose.Schema.Types.ObjectId, ref: "Utente" },
-  sondaggio: { type: mongoose.Schema.Types.ObjectId, ref: "Sondaggio" },
-  data: Date,
-});
+var Questionario = mongoose.model('Questionario', QuestionarioSchema);
 
-// Schema della risposta
-const rispostaSchema = new mongoose.Schema({
-  questionario: { type: mongoose.Schema.Types.ObjectId, ref: "Questionario" },
-  domanda: { type: mongoose.Schema.Types.ObjectId, ref: "Domanda" },
-  risposta: String,
-});
-
-// Modelli
-const Sondaggio = mongoose.model("Sondaggio", sondaggioSchema);
-const Domanda = mongoose.model("Domanda", domandaSchema);
-const Questionario = mongoose.model("Questionario", questionarioSchema);
-const Risposta = mongoose.model("Risposta", rispostaSchema);
+module.exports = {
+    Sondaggio,
+    Questionario
+};

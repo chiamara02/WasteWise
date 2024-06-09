@@ -1,71 +1,55 @@
 const Sondaggio = require("../db/sondaggio").Sondaggio;
 const Questionario = require("../db/sondaggio").Questionario;
-const Utente = require("../db/user").Utente;
+const User = require("../db/user").Utente;
 
 class SondaggiHandler {
-  static async getQuestionarioByUserId(idUtente) {
-    let user = await User.findById(idUtente);
-    if (!user) throw new NotFoundException("User not found");
-    let questionario = await Questionario.findOne({
-      utente: idUtente,
-    }).populate("sondaggio");
-    return questionario;
-  }
+    
+    static async nuovoSondaggio(titolo, domande) {
+        let sondaggio = await Sondaggio.create({
+            titolo: titolo,
+            domande: domande
+        });
+        return sondaggio;
+    }
 
-  static async getQuestionariById(idQuestionario) {
-    let questionario = await Questionario.findById(idQuestionario).populate(
-      "sondaggio"
-    );
-    return questionario;
-  }
+    static async mostraSondaggi() {
+        // Trova tutte le istanze del modello sondaggio
+        let sondaggi = await Sondaggio.find();
+        return sondaggi;
+    }
 
-  static async getQuestionarioBySondaggioId(idSondaggio) {
-    let questionario = await Questionario.findOne({
-      sondaggio: idSondaggio,
-    }).populate("sondaggio");
-    return questionario;
-  }
+    static async nuovoQuestionario(sondaggio, utente, risposte) {
+        let user = await User.findById(utente);
+        if (!user) throw new FailedDependencyException("User not found");
 
+        let questionario = await Questionario.create({
+            sondaggio: sondaggio,
+            utente: utente,
+            risposte: risposte
+        });
+        return questionario;
+    }
+
+    static async mostraQuestionari(userId, sondaggioId) {
+      try {
+          let query = {};
   
-  static async getSondaggio(idSondaggio) {
-    let sondaggio = await Sondaggio.findById(idSondaggio).populate("domande");
-    return sondaggio;
-  }
-
-  static async postQuestionario(idUtente, idSondaggio) {
-    let questionario = await Questionario.create({
-      utente: idUtente,
-      sondaggio: idSondaggio,
-      data: new Date(),
-    });
-    return questionario;
-  }
-
-  static async postRisposta(idQuestionario, idDomanda, risposta) {
-    let questionario = await Questionario.findById(idQuestionario);
-    if (!questionario) throw new NotFoundException("Questionario not found");
-    let domanda = await Domanda.findById(idDomanda);
-    if (!domanda) throw new NotFoundException("Domanda not found");
-    let risposta = await Risposta.create({
-      questionario: idQuestionario,
-      domanda: idDomanda,
-      risposta: risposta,
-    });
-    return risposta;
-  }
-
-  static async postDomanda(testo) {
-    let domanda = await Domanda.create({
-      testo: testo,
-    });
-    return domanda;
-  }
-
-  static async postSondaggio(domande) {
-    let sondaggio = await Sondaggio.create({
-      domande: domande,
-    });
-    return sondaggio;
+          // Se è specificato l'userId, filtra per userId
+          if (userId) {
+              query.utente = userId;
+          }
+  
+          // Se è specificato il sondaggioId, filtra per sondaggioId
+          if (sondaggioId) {
+              query.sondaggio = sondaggioId;
+          }
+  
+          // Trova i questionari che corrispondono alla query
+          let questionari = await Questionario.find(query).populate('sondaggio').populate('utente');
+          return questionari;
+      } catch (err) {
+          throw new Error(err.message);
+      }
   }
 }
 

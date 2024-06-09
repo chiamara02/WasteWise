@@ -12,24 +12,12 @@ class Ente extends LoggedUser {
         return GestoreSegnalazioni.mostraSegnalazioni();
     }
 
-    static async getQuestionarioByUserId(idUtente){
-        return SondaggiHandler.getQuestionarioByUserId(idUtente);
+    static async nuovoSondaggio(titolo, domande) {
+        return SondaggiHandler.nuovoSondaggio(titolo, domande);
     }
 
-    static async getQuestionariById(idQuestionario){
-        return SondaggiHandler.getQuestionariById(idQuestionario);
-    }
-
-    static async getQuestionarioBySondaggioId(idSondaggio){
-        return SondaggiHandler.getQuestionarioBySondaggioId(idSondaggio);
-    }
-
-    static async postSondaggio(domande){     
-        return SondaggiHandler.postSondaggio(domande);
-    }
-
-    static async postDomanda(testo){
-        return SondaggiHandler.postDomanda(testo);
+    static async mostraQuestionari(userId, sondaggioId) {
+        return SondaggiHandler.mostraQuestionari(userId, sondaggioId);
     }
 }
 

@@ -1,7 +1,7 @@
 const LoggedUser = require("./LoggedUser");
 const TaxHandler = require("../handlers/TaxHandler");
-
-const GestoreSegnalazioni = require("../handlers/SegnalazioniHandler")
+const GestoreSegnalazioni = require("../handlers/SegnalazioniHandler");
+const SondaggiHandler = require("../handlers/SondaggiHandler");
 
 class Cittadino extends LoggedUser {
     constructor() {
@@ -20,17 +20,15 @@ class Cittadino extends LoggedUser {
         return TaxHandler.getTasse(idUser, stato);
     }
 
-    static async getSondaggio(idSondaggio) {
-        return SondaggiHandler.getSondaggio(idSondaggio);
+    static async compilaSondaggio(sondaggio, utente, risposte) {
+        return SondaggiHandler.nuovoQuestionario(sondaggio, utente, risposte);
     }
 
-    static async postQuestionario(idUtente, idSondaggio) {
-        return SondaggiHandler.postQuestionario(idUtente, idSondaggio);
+    static async mostarSondaggi(){
+        return SondaggiHandler.mostraSondaggi();
     }
 
-    static async postRisposta(idQuestionario, idDomanda, risposta) {
-        return SondaggiHandler.postRisposta(idQuestionario, idDomanda, risposta);
-    }
+    
 }
 
 module.exports = Cittadino;

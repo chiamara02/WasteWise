@@ -174,8 +174,29 @@ const taxSchema = {
       ],
     },
   }
-}
+};
 
+const questionarioSchema = {
+  sondaggio: {
+    in: ['body'],
+    errorMessage: 'Sondaggio ID is required',
+    isMongoId: true,
+    notEmpty: true,
+  },
+  risposte: {
+    in: ['body'],
+    errorMessage: 'Risposte are required',
+    isArray: true,
+    notEmpty: true,
+    custom: {
+      options: (value) => {
+        // Ensure all answers are non-empty strings
+        return value.every((answer) => typeof answer === 'string' && answer.trim() !== '');
+      },
+      errorMessage: 'Each response must be a non-empty string',
+    },
+  },
+};
 
 module.exports = {
   userSchemaSignUP,
@@ -188,5 +209,6 @@ module.exports = {
   changePasswordSchema,
   segnalazioneSchema,
   taxSchema,
+  questionarioSchema
 };
 
