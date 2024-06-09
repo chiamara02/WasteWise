@@ -191,7 +191,7 @@ const prenotazioneSchema = {
     isDate: true,
   }],
   stato: {
-    notEmpty: true,
+    optional: true,
     isIn: {
       options: [
         [
@@ -205,6 +205,7 @@ const prenotazioneSchema = {
   },
   dataEffettiva:{
     isDate: true,
+    optional: true,
   },
 };
 
