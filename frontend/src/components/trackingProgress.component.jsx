@@ -68,7 +68,7 @@ export default function TrackingProgress({ percorso, zona, hasControls }) {
         setRefresh(false)
     }, [percorso, refresh])
 
-    console.log(feed)
+    // console.log(feed)
 
 
     return (
@@ -90,7 +90,9 @@ export default function TrackingProgress({ percorso, zona, hasControls }) {
                         {!feed.isInProgress ? "Inizia corsa" : "Prossima fermata"}
                     </button>
                     :
+                    (hasControls) ?
                     <p>Corsa Terminata</p>
+                    : <p></p>
                 }
                 <button
                     onClick={()=>setRefresh(true)}
@@ -102,7 +104,7 @@ export default function TrackingProgress({ percorso, zona, hasControls }) {
             </div>
             <div className="px-4 py-5 sm:p-6">
                 <nav aria-label="Progress">
-                    <h1 className='mb-3 text-primary font-bold'>Tracking: {zona}</h1>
+                    <h1 className='mb-3 text-primary font-bold'>Tracking {zona}</h1>
                     <ol role="list" className="overflow-hidden">
                         {stops.map((step, stepIdx) => (
                             <li key={step.name} className={classNames(stepIdx !== stops.length - 1 ? 'pb-10' : '', 'relative')}>
