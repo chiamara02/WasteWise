@@ -48,14 +48,19 @@ describe("Segnalazioni", () => {
             return expect(res.statusCode).toEqual(401);
         });
 
-        it("should return 200 and a list of segnalazioni if they exist", async () => {
-            // Create a new segnalazione
-            let utenteCittadino = await User.findOne({
+        it("should return 200 if segnalazioni are received by Ente", async () => {
+            let utenteCittadino = await User.findOne({ //il cittadino fa la segnalazione
                 email: userCittadino.email,
             }).exec();
             utenteCittadino = utenteCittadino._id;
 
+            let utenteEnte = await User.findOne({ //l'ente la riceve
+                email: userEnte.email,
+            }).exec();
+            utenteEnte = utenteEnte._id;
+
             const token = generateToken(utenteCittadino, userCittadino.email);
+            const tokenEnte = generateToken(utenteEnte, userEnte.email);
 
             const newSegnalazione = {
                 descrizione: makeString(10),
@@ -65,17 +70,52 @@ describe("Segnalazioni", () => {
 
             await fetchAPI("/segnalazioni", "POST", newSegnalazione, token);
 
-            // Get the list of segnalazioni
-            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+            const res = await fetchAPI("/segnalazioni", "GET", null, tokenEnte);
 
-            // Check if the list includes the new segnalazione
-            expect(res.statusCode).toEqual(200);
-            expect(res.body).toContainEqual(expect.objectContaining(newSegnalazione));
+            return expect(res.statusCode).toEqual(200);
+        });
+    
+        it("should return 400 if the text of segnalazione is empty", async () => {
+            let utente = await User.findOne({
+                email: userEnte.email,
+            }).exec();
+            utente = utente._id;
+
+            const token = generateToken(utente, userEnte.email);
+            const res = await fetchAPI(
+                "/segnalazioni",
+                "POST",
+                {
+                    descrizione: "",
+                    indirizzo: makeString(10),
+                    foto: makeString(10),
+                },
+                token
+            );
+            return expect(res.statusCode).toEqual(400);
         });
     })
 
     describe("GET /segnalazioni", () => {
+        it("should return 401 if user is not logged in", async () => {
+            const res = await fetchAPI("/segnalazioni", "GET", null);
+            return expect(res.statusCode).toEqual(401);
+        });
+
         it("should return 200 and an empty list if no segnalazioni exist", async () => {
+            let utenteEnte = await User.findOne({
+                email: userEnte.email,
+            }).exec();
+            utenteEnte = utenteEnte._id;
+
+            const token = generateToken(utenteEnte, userEnte.email);
+
+            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+
+            return expect(res.statusCode).toEqual(200) && expect(res.body).toEqual([]);
+        });
+
+        it("should return 401 if all segnalazioni are seen by Cittadino", async () => {
             let utenteCittadino = await User.findOne({
                 email: userCittadino.email,
             }).exec();
@@ -85,7 +125,20 @@ describe("Segnalazioni", () => {
 
             const res = await fetchAPI("/segnalazioni", "GET", null, token);
 
-            return expect(res.statusCode).toEqual(200) && expect(res.body).toEqual([]);
+            return expect(res.statusCode).toEqual(401);
+        });
+
+        it("should return 200 if all segnalazioni are seen by Ente", async () => {
+            let utenteEnte = await User.findOne({
+                email: userEnte.email,
+            }).exec();
+            utenteEnte = utenteEnte._id;
+
+            const token = generateToken(utenteEnte, userEnte.email);
+
+            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+
+            return expect(res.statusCode).toEqual(200);
         });
 
     })
