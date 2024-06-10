@@ -48,26 +48,33 @@ describe("Segnalazioni", () => {
             return expect(res.statusCode).toEqual(401);
         });
 
-        it("should return 401 if descrizione is not valid", async () => {
-            let utente = await User.findOne({
-                email: userEnte.email,
+        it("should return 200 and a list of segnalazioni if they exist", async () => {
+            // Create a new segnalazione
+            let utenteCittadino = await User.findOne({
+                email: userCittadino.email,
             }).exec();
-            utente = utente._id;
+            utenteCittadino = utenteCittadino._id;
 
-            const token = generateToken(utente, userEnte.email);
-            const res = await fetchAPI(
-                "/segnalazioni",
-                "POST",
-                {
-                    descrizione: makeString(10),
-                    indirizzo: makeString(10),
-                    foto: makeString(10),
-                },
-                token
-            );
-            return expect(res.statusCode).toEqual(401);
+            const token = generateToken(utenteCittadino, userCittadino.email);
+
+            const newSegnalazione = {
+                descrizione: makeString(10),
+                indirizzo: makeString(10),
+                foto: makeString(10),
+            };
+
+            await fetchAPI("/segnalazioni", "POST", newSegnalazione, token);
+
+            // Get the list of segnalazioni
+            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+
+            // Check if the list includes the new segnalazione
+            expect(res.statusCode).toEqual(200);
+            expect(res.body).toContainEqual(expect.objectContaining(newSegnalazione));
         });
+    })
 
+    describe("GET /segnalazioni", () => {
         it("should return 200 and an empty list if no segnalazioni exist", async () => {
             let utenteCittadino = await User.findOne({
                 email: userCittadino.email,
@@ -75,15 +82,11 @@ describe("Segnalazioni", () => {
             utenteCittadino = utenteCittadino._id;
 
             const token = generateToken(utenteCittadino, userCittadino.email);
-        
+
             const res = await fetchAPI("/segnalazioni", "GET", null, token);
-        
+
             return expect(res.statusCode).toEqual(200) && expect(res.body).toEqual([]);
         });
-
-    })
-
-    describe("GET /segnalazioni", () => {
 
     })
 })
