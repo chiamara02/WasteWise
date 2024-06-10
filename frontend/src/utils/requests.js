@@ -131,22 +131,23 @@ export async function nextStop(zona) {
   return await fetchAPI("/tracking", "POST", { zona: zona });
 }
 
-// Funzione aggiornata per creare un nuovo sondaggio
+// Funzione per creare un nuovo sondaggio
 export async function nuovoSondaggio(titolo, domande) {
-  return await fetch("/api/sondaggio", "POST", {
+  return await fetchAPI("/api/sondaggio", "POST", {
     titolo: titolo,
     domande: domande,
   });
 }
 
-// Funzione aggiornata per ottenere i sondaggi
+// Funzione per ottenere i sondaggi
 export async function getSondaggi() {
-  return await fetch("/api/sondaggio", "GET");
+  console.log("getSondaggi - request.js");
+  return await fetchAPI("/api/sondaggio", "GET");
 }
 
-// Funzione aggiornata per compilare un sondaggio
+// Funzione per compilare un sondaggio
 export async function compilaSondaggio(id, risposte) {
-  return await fetch(`/api/questionario`, "POST", {
+  return await fetchAPI(`/api/questionario`, "POST", {
     id: id,
     risposte: risposte,
   });
@@ -154,6 +155,6 @@ export async function compilaSondaggio(id, risposte) {
 
 // Funzione per ottenere i questionari compilati
 export async function getQuestionari() {
-    return await fetch('/api/questionario', 'GET');
+    return await fetchAPI('/api/questionario', 'GET');
 }
 

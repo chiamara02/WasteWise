@@ -48,7 +48,6 @@ export default function MostraQuestionari() {
                     <p>Nessun questionario compilato disponibile</p>
                 )}
             </div>
-            <HomePageButton />
         </div>
     );
 }

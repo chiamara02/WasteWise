@@ -9,7 +9,9 @@ export default function MostraSondaggi() {
 
     useEffect(() => {
         async function fetchData() {
+            console.log("fetchData - MostraSondaggi.jsx");
             const response = await getSondaggi();
+            console.log(response);
             if (response && response.success) {
                 setSondaggi(response.data);
             }
@@ -38,7 +40,6 @@ export default function MostraSondaggi() {
                     <p>Nessun sondaggio disponibile</p>
                 )}
             </div>
-            <HomePageButton />
         </div>
     );
 }

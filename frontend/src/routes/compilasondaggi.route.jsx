@@ -95,7 +95,6 @@ export default function CompilaSondaggio() {
                     </button>
                 </div>
             </form>
-            <HomePageButton />
         </div>
     );
 }
