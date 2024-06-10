@@ -16,6 +16,7 @@ import Login from './routes/login.route'
 
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
+
 import TasseRoute from './routes/tasse.route'
 import Tracking from './routes/mostratracking.route'
 
@@ -25,6 +26,10 @@ import Percorsi, {loader, loader as percorsiLoader } from './routes/percorsi.rou
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
 import OperatoreD from './routes/operatore.route'
+import MostraPrenotazioni from './routes/mostraprenotazioni'
+import MostraPrenotazioniUtente from './routes/mostraprenotazioniutente.route'
+import NuovaPrenotazione from './routes/nuovaprenotazione.route'
+import ModificaPrenotazione from './routes/modificaprenotazione.route'
 
 
 const router = createBrowserRouter([
@@ -59,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/prenotazioni',
-        element: <WipPage />,
+        element: <MostraPrenotazioniUtente />,
+      },
+      {
+        path: '/dashboard/nuovaPrenotazione',
+        element: <NuovaPrenotazione />
       },
       {
         path: '/dashboard/tracking',
@@ -86,6 +95,14 @@ const router = createBrowserRouter([
       {
         path:'/management/sondaggi',
         
+      },
+      {
+        path:'/management/prenotazioni',
+        element: <MostraPrenotazioni />,
+      },
+      {
+        path:'/management/modificaPrenotazione/:id',
+        element: <ModificaPrenotazione />
       }
     ]
     
