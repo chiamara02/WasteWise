@@ -148,8 +148,9 @@ export async function getSondaggi() {
 
 // Funzione per compilare un sondaggio
 export async function compilaSondaggio(id, risposte) {
+  console.log("compilaSondaggio - request.js");
   return await fetchAPI(`/sondaggi/questionario`, "POST", {
-    id: id,
+    sondaggio: id,
     risposte: risposte,
   });
 }
@@ -157,5 +158,10 @@ export async function compilaSondaggio(id, risposte) {
 // Funzione per ottenere i questionari compilati
 export async function getQuestionari() {
     return await fetchAPI('/sondaggi/questionario', 'GET');
+}
+
+//funzione per ottenere un sondaggio per id
+export async function getSondaggio(id) {
+    return await fetchAPI(`/sondaggi/sondaggio/${id}`, 'GET');
 }
 

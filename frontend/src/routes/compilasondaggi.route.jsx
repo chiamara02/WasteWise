@@ -3,10 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { getSondaggi, compilaSondaggio } from '../utils/requests';
+import { getSondaggio, compilaSondaggio } from '../utils/requests';
 import { toast } from 'react-toastify';
 import PageHeading from '../components/pageHeading.component';
 import InputFeedback from '../components/inputFeedback.component';
+import { Link } from 'react-router-dom';
 
 export default function CompilaSondaggio() {
     const { id } = useParams();
@@ -31,7 +32,7 @@ export default function CompilaSondaggio() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await getSondaggi();
+            const response = await getSondaggio(id);
             if (response && response.success) {
                 setSondaggio(response.data);
             } else {
@@ -43,6 +44,7 @@ export default function CompilaSondaggio() {
     }, [id, history]);
 
     const onSubmit = async (data) => {
+        console.log(data, id);
         const response = await compilaSondaggio(id, data.risposte);
         if (response && response.success) {
             reset();
@@ -94,6 +96,13 @@ export default function CompilaSondaggio() {
                     </button>
                 </div>
             </form>
+            <div className="mt-2 mb-5">
+                <Link to="/dashboard/sondaggi">
+                    <button className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-background shadow-sm hover:bg-primaryhover">
+                        Pagina Precedente
+                    </button>
+                </Link>
+            </div>
         </div>
     );
 }

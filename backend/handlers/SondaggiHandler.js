@@ -12,6 +12,11 @@ class SondaggiHandler {
         return sondaggio;
     }
 
+    static async mostraSondaggi(id) {
+        let sondaggio = await Sondaggio.findById(id);
+        return sondaggio;
+    }
+
     static async mostraSondaggiDisponibili() {
         //trova tutti i sondaggi non gia compilati dall'utente
         console.log("mostraSondaggiDisponibili - SondaggiHandler.js");

@@ -28,6 +28,22 @@ router.get(
   }
 );
 
+router.get(
+  "/sondaggio/:id",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  async function (req, res, next) {
+    const user = await User.findOne({ _id: req.user._id });
+    try{
+      idSondaggio = await TipoUtente.getUserType(user.userType).mostraSondaggiById(req.params.id);
+      successRes(res, "OK", idSondaggio, 201);
+    }catch(error){
+      errorRes(res, error, error.message, error.code);
+    }
+  }
+);
+
 //ente
 router.post(
   "/sondaggio",

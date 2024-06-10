@@ -30,11 +30,12 @@ class Cittadino extends LoggedUser {
     }
 
     static async mostraSondaggi(){
-        console.log("mostraSondaggi - Cittadino.js")
         return SondaggiHandler.mostraSondaggiDisponibili();
     }
 
-    
+    static async mostraSondaggiById(id){
+        return SondaggiHandler.mostraSondaggi(id);
+    }
 
     static async getFeedAttuale(zonaId) {
         return await TrackingHandler.getFeedAttuale(zonaId);

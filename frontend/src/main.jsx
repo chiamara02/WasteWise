@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     element: <NuovoSondaggio />,
   },
   {
-    path: '/compilasondaggio',
+    path: '/compilasondaggio/:id',
     element: <CompilaSondaggio />,
   },
   {
