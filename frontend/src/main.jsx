@@ -17,9 +17,14 @@ import Login from './routes/login.route'
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
 import TasseRoute from './routes/tasse.route'
+import Tracking from './routes/mostratracking.route'
+
+import ManagementD from './routes/management.route'
+import Percorsi, {loader, loader as percorsiLoader } from './routes/percorsi.route'
 
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
+import OperatoreD from './routes/operatore.route'
 
 
 const router = createBrowserRouter([
@@ -57,6 +62,10 @@ const router = createBrowserRouter([
         element: <WipPage />,
       },
       {
+        path: '/dashboard/tracking',
+        element: <Tracking />,
+      },
+      {
         path: '/dashboard/segnalazioni',
         element: <NuovaSegnalazione />,
       },
@@ -64,8 +73,33 @@ const router = createBrowserRouter([
         path: '/dashboard/sondaggi',
         element: <WipPage />,
       },
+    ]  
+  },
+  {
+    path: '/management',
+    element: <ManagementD />,
+    children: [
+      {
+        path:'/management/segnalazioni',
+        element: <MostraSegnalazioni />,
+      },
+      {
+        path:'/management/sondaggi',
+        
+      }
     ]
-  
+    
+  },
+  {
+    path: '/operatore',
+    element: <OperatoreD />,
+    children: [
+      {
+        path:'/operatore/percorsi',
+        element: <Percorsi />,
+        loader: percorsiLoader
+      }
+    ]
   },
 
 ])

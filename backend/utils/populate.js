@@ -8,6 +8,11 @@ const Sondaggio = require("../db/sondaggio").Sondaggio;
 const sondaggi = require("./testDataDump/sondaggi.json");
 const Questionario = require("../db/sondaggio").Questionario;
 const questionari = require("./testDataDump/questionari.json");
+const Tappa  = require("../db/tappa").Tappa;
+const tappe = require("./testDataDump/tappe.json");
+const Percorso = require("../db/percorso").Percorso;
+const percorsi = require("./testDataDump/percorsi.json");
+
 
 const { db } = require("../db");
 
@@ -19,6 +24,8 @@ async function deleteAll() {
   await Tasse.deleteMany({}, options);
   await Sondaggio.deleteMany({}, options);
   await Questionario.deleteMany({}, options);
+  await Tappa.deleteMany({}, options);
+  await Percorso.deleteMany({}, options);
 }
 
 async function populateAll() {
@@ -27,6 +34,8 @@ async function populateAll() {
   await Tasse.create(tasseData);
   await Sondaggio.create(sondaggi);
   await Questionario.create(questionari);
+  await Tappa.create(tappe);
+  await Percorso.create(percorsi);
 }
 
 async function manualPopulate() {

@@ -37,7 +37,6 @@ const MostraSegnalazioni = () => {
               <p className="text-gray-700">{segnalazione.descrizione}</p>
             </div>
           ))}
-          <HomePageButton />
         </div>
         
   );

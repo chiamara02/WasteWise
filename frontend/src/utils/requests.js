@@ -108,3 +108,14 @@ export async function getTasse(stato = undefined) {
     return await fetchAPI('/tasse', 'GET', params);
 }
 
+export async function getPercorsi() {
+    return await fetchAPI('/tracking/percorsi', 'GET');
+}
+
+export async function getTracking(zona) {
+    return await fetchAPI('/tracking', 'GET', {zona: zona});
+}
+
+export async function nextStop(zona) {
+    return await fetchAPI('/tracking', 'POST', {zona:zona})
+}
