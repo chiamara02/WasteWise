@@ -35,6 +35,7 @@ router.post(
     session: false,
   }),
   async function (req, res, next) {
+    console.log(req.user + " route sondaggi post sondaggio ente ");
     const user = await User.findOne({ _id: req.user._id });
 
     try {

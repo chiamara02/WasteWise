@@ -64,7 +64,7 @@ export default function CompilaSondaggio() {
                 <div>
                     <div className="border-b border-backgroundmuted pb-12">
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            {sondaggio.domande.map((domanda, index) => (
+                            {sondaggio.domande?.map((domanda, index) => (
                                 <div key={index} className="sm:col-span-full">
                                     <InputFeedback
                                         name={`risposte[${index}]`}

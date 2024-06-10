@@ -27,7 +27,7 @@ export default function MostraSondaggi() {
                         {sondaggi.map((sondaggio) => (
                             <li key={sondaggio._id} className="flex justify-between items-center p-4 bg-background rounded-md shadow-sm">
                                 <span>{sondaggio.titolo}</span>
-                                <Link to={`/compila-sondaggio/${sondaggio._id}`}>
+                                <Link to={`/compilasondaggio/${sondaggio._id}`}>
                                     <button className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-background shadow-sm hover:bg-primaryhover">
                                         Compila
                                     </button>

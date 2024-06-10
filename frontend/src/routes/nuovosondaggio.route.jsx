@@ -5,6 +5,7 @@ import { nuovoSondaggio } from "../utils/requests";
 import { toast } from "react-toastify";
 import PageHeading from "../components/pageHeading.component";
 import InputFeedback from "../components/inputFeedback.component";
+import { Link } from 'react-router-dom';
 
 export default function NuovoSondaggio() {
     const formSchema = yup.object().shape({
@@ -31,6 +32,7 @@ export default function NuovoSondaggio() {
     });
 
     const onSubmit = async (data) => {
+        console.log(data);
         let response = await nuovoSondaggio(data.titolo, data.domande);
         if (response && response["success"]) {
             reset();
@@ -102,6 +104,14 @@ export default function NuovoSondaggio() {
                     </button>
                 </div>
             </form>
+            <div className="mt-2 mb-5">
+                <Link to="/management/sondaggi">
+                    <button className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-background shadow-sm hover:bg-primaryhover">
+                        Pagina Precedente
+                    </button>
+                </Link>
+            </div>
         </div>
+        
     );
 }
