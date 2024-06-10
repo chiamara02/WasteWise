@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getQuestionari } from '../utils/requests';
 import PageHeading from "../components/pageHeading.component";
-import HomePageButton from "../components/homepagebutton.component";
 
 export default function MostraQuestionari() {
     const [questionari, setQuestionari] = useState([]);
@@ -10,9 +9,9 @@ export default function MostraQuestionari() {
     useEffect(() => {
         async function fetchData() {
             const response = await getQuestionari();
-            if (response && response.success) {
-                setQuestionari(response.data);
-            }
+            console.log(response);
+            setQuestionari(response.data);
+            
         }
         fetchData();
     }, []);

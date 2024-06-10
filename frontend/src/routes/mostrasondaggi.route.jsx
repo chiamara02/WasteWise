@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getSondaggi } from '../utils/requests';
 import PageHeading from "../components/pageHeading.component";
-import HomePageButton from "../components/homepagebutton.component";
 
 export default function MostraSondaggi() {
     const [sondaggi, setSondaggi] = useState([]);

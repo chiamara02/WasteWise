@@ -142,7 +142,7 @@ export async function nuovoSondaggio(titolo, domande) {
 // Funzione per ottenere i sondaggi
 export async function getSondaggi() {
   console.log("getSondaggi - request.js");
-  return await fetchAPI("/api/sondaggio", "GET");
+  return await fetchAPI("/api/sondaggi/sondaggio", "GET");
 }
 
 // Funzione per compilare un sondaggio

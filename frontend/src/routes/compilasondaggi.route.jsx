@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { getSondaggio, compilaSondaggio } from '../utils/requests';
+import { getSondaggi, compilaSondaggio } from '../utils/requests';
 import { toast } from 'react-toastify';
 import PageHeading from '../components/pageHeading.component';
 import InputFeedback from '../components/inputFeedback.component';
-import HomePageButton from '../components/homepagebutton.component';
 
 export default function CompilaSondaggio() {
     const { id } = useParams();
-    const history = useHistory();
+    const history = useNavigate();
     const [sondaggio, setSondaggio] = useState(null);
 
     const formSchema = yup.object().shape({
@@ -32,7 +31,7 @@ export default function CompilaSondaggio() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await getSondaggio(id);
+            const response = await getSondaggi();
             if (response && response.success) {
                 setSondaggio(response.data);
             } else {

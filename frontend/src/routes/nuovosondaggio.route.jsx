@@ -5,7 +5,6 @@ import { nuovoSondaggio } from "../utils/requests";
 import { toast } from "react-toastify";
 import PageHeading from "../components/pageHeading.component";
 import InputFeedback from "../components/inputFeedback.component";
-import HomePageButton from "../components/homepagebutton.component";
 
 export default function NuovoSondaggio() {
     const formSchema = yup.object().shape({

@@ -28,6 +28,8 @@ import OperatoreD from './routes/operatore.route'
 
 import MostraQuestionari from './routes/mostraquestionari.route'
 import MostraSondaggi from './routes/mostrasondaggi.route'
+import NuovoSondaggio from './routes/nuovosondaggio.route'
+import CompilaSondaggio from './routes/compilasondaggi.route'
 
 
 const router = createBrowserRouter([
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
   {
     path: '/wip',
     element: <WipPage />,
+  },
+  {
+    path: '/nuovosondaggio',
+    element: <NuovoSondaggio />,
+  },
+  {
+    path: '/compilasondaggio',
+    element: <CompilaSondaggio />,
   },
   {
     path: '/dashboard',
