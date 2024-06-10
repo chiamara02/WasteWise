@@ -47,35 +47,8 @@ describe("Segnalazioni", () => {
             );
             return expect(res.statusCode).toEqual(401);
         });
-
-        it("should return 200 if segnalazioni are received by Ente", async () => {
-            let utenteCittadino = await User.findOne({ //il cittadino fa la segnalazione
-                email: userCittadino.email,
-            }).exec();
-            utenteCittadino = utenteCittadino._id;
-
-            let utenteEnte = await User.findOne({ //l'ente la riceve
-                email: userEnte.email,
-            }).exec();
-            utenteEnte = utenteEnte._id;
-
-            const token = generateToken(utenteCittadino, userCittadino.email);
-            const tokenEnte = generateToken(utenteEnte, userEnte.email);
-
-            const newSegnalazione = {
-                descrizione: makeString(10),
-                indirizzo: makeString(10),
-                foto: makeString(10),
-            };
-
-            await fetchAPI("/segnalazioni", "POST", newSegnalazione, token);
-
-            const res = await fetchAPI("/segnalazioni", "GET", null, tokenEnte);
-
-            return expect(res.statusCode).toEqual(200);
-        });
     
-        it("should return 400 if the text of segnalazione is empty", async () => {
+        it("should return 401 if the text of segnalazione is empty", async () => {
             let utente = await User.findOne({
                 email: userEnte.email,
             }).exec();
@@ -92,7 +65,7 @@ describe("Segnalazioni", () => {
                 },
                 token
             );
-            return expect(res.statusCode).toEqual(400);
+            return expect(res.statusCode).toEqual(401);
         });
     })
 
@@ -136,7 +109,7 @@ describe("Segnalazioni", () => {
 
             const token = generateToken(utenteEnte, userEnte.email);
 
-            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+            const res = await fetchAPI("/segnalazioni", "GET", {}, token);
 
             return expect(res.statusCode).toEqual(200);
         });

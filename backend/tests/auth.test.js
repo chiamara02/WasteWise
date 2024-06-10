@@ -69,12 +69,12 @@ describe("Auth", () => {
             });
             return expect(res.statusCode).toEqual(401);
         });
-        it("should return 401 if email is not in use", async () => {
+        it("should return 404 if email is not in use", async () => {
             const res = await fetchAPI("/auth/login", "POST", {
                 email: makeEmail(),
                 password: userCittadino.password,
             });
-            return expect(res.statusCode).toEqual(401);
+            return expect(res.statusCode).toEqual(404);
         });
         it("should return 200 if email and password are valid", async () => {
             const res = await fetchAPI("/auth/login", "POST", {

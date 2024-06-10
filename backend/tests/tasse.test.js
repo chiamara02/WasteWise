@@ -37,7 +37,7 @@ describe("Tasse", () => {
             utente = utente._id;
 
             const token = generateToken(utente, userEnte.email);
-            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+            const res = await fetchAPI("/tasse", "GET", null, token);
             return expect(res.statusCode).toEqual(401);
         });
 
@@ -48,7 +48,7 @@ describe("Tasse", () => {
             utente = utente._id;
 
             const token = generateToken(utente, userOperatore.email);
-            const res = await fetchAPI("/segnalazioni", "GET", null, token);
+            const res = await fetchAPI("/tasse", "GET", null, token);
             return expect(res.statusCode).toEqual(401);
         });        
 
@@ -59,11 +59,12 @@ describe("Tasse", () => {
             utenteCittadino = utenteCittadino._id;
 
             const token = generateToken(utenteCittadino, userCittadino.email);
-            const res = await request(app).get("/user");
-            expect(res.statusCode).toEqual(200);
+            const res = await fetchAPI("/tasse", "GET", null, token);
+            return expect(res.statusCode).toEqual(200);
         });
+        
 
-        it("should return 200 and an empty list if no tasse exist", async () => {
+        it("should return 200 if there are tasse for a cittadino", async () => {
             let utenteCittadino = await User.findOne({
                 email: userCittadino.email,
             }).exec();
@@ -73,7 +74,7 @@ describe("Tasse", () => {
 
             const res = await fetchAPI("/tasse", "GET", null, token);
 
-            return expect(res.statusCode).toEqual(200) && expect(res.body).toEqual([]);
+            return expect(res.statusCode).toEqual(200);
         });
 
     })

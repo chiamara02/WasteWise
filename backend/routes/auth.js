@@ -58,7 +58,7 @@ router.post("/login", checkSchema(userSchemaLogin), async (req, res, next) => {
   let val = validationResult(req);
   try {
     if (!val.isEmpty()) {
-      throw new BadRequestException("Fields not valid");
+      throw new UnauthorizedException("Fields not valid");
     }
     passport.authenticate("login", async (err, user, info) => {
       if (err) {
