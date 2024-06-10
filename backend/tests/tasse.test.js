@@ -52,7 +52,8 @@ describe("Tasse", () => {
             return expect(res.statusCode).toEqual(401);
         });        
 
-        it("should return 200 if user is a Cittadino", async () => {
+        it("should return 200 if user is a Cittadino", async () => { 
+
             let utenteCittadino = await User.findOne({
                 email: userCittadino.email,
             }).exec();
@@ -60,22 +61,9 @@ describe("Tasse", () => {
 
             const token = generateToken(utenteCittadino, userCittadino.email);
             const res = await fetchAPI("/tasse", "GET", null, token);
-            return expect(res.statusCode).toEqual(200);
+            return expect(res.statusCode).toEqual(200) && res;
         });
         
-
-        it("should return 200 if there are tasse for a cittadino", async () => {
-            let utenteCittadino = await User.findOne({
-                email: userCittadino.email,
-            }).exec();
-            utenteCittadino = utenteCittadino._id;
-
-            const token = generateToken(utenteCittadino, userCittadino.email);
-
-            const res = await fetchAPI("/tasse", "GET", null, token);
-
-            return expect(res.statusCode).toEqual(200);
-        });
 
     })
 })

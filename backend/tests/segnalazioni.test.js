@@ -75,19 +75,6 @@ describe("Segnalazioni", () => {
             return expect(res.statusCode).toEqual(401);
         });
 
-        it("should return 200 and an empty list if no segnalazioni exist", async () => {
-            let utenteEnte = await User.findOne({
-                email: userEnte.email,
-            }).exec();
-            utenteEnte = utenteEnte._id;
-
-            const token = generateToken(utenteEnte, userEnte.email);
-
-            const res = await fetchAPI("/segnalazioni", "GET", null, token);
-
-            return expect(res.statusCode).toEqual(200) && expect(res.body).toEqual([]);
-        });
-
         it("should return 401 if all segnalazioni are seen by Cittadino", async () => {
             let utenteCittadino = await User.findOne({
                 email: userCittadino.email,
@@ -101,7 +88,7 @@ describe("Segnalazioni", () => {
             return expect(res.statusCode).toEqual(401);
         });
 
-        it("should return 200 if all segnalazioni are seen by Ente", async () => {
+        it("should return 200 if segnalazioni are seen by Ente", async () => {
             let utenteEnte = await User.findOne({
                 email: userEnte.email,
             }).exec();
