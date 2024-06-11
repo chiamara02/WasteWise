@@ -20,7 +20,7 @@ const userEnte = users.find(
 
 describe("Prenotazioni", () => {
 
-    describe("GET /getPrenotazioni", () => {
+    describe("GET /prenotazioni/getPrenotazioni", () => {
 
         it("should return 401 if user is not logged in", async () => {
             const res = await fetchAPI("/getPrenotazioni", "GET", null);
@@ -34,15 +34,15 @@ describe("Prenotazioni", () => {
             utenteCittadino = utenteCittadino._id;
 
             const token = await generateToken(utenteCittadino, userCittadino.email);
-            const res = await fetchAPI("/getPrenotazioni", "GET", null, token);
+            const res = await fetchAPI("/prenotazioni/getPrenotazioni", "GET", null, token);
             return expect(res.statusCode).toEqual(200);
         });
     });
 
-    describe("GET /getAllPrenotazioni", () => {
+    describe("GET /prenotazioni/getAllPrenotazioni", () => {
 
         it("should return 401 if user is not logged in", async () => {
-            const res = await fetchAPI("/getAllPrenotazioni", "GET", null);
+            const res = await fetchAPI("/prenotazioni/getAllPrenotazioni", "GET", null);
             return expect(res.statusCode).toEqual(401);
         });
 
@@ -53,15 +53,15 @@ describe("Prenotazioni", () => {
             utenteEnte = utenteEnte._id;
 
             const token = await generateToken(utenteEnte, userEnte.email);
-            const res = await fetchAPI("/getAllPrenotazioni", "GET", null, token);
+            const res = await fetchAPI("/prenotazioni/getAllPrenotazioni", "GET", null, token);
             return expect(res.statusCode).toEqual(200);
         });
     });
 
-    describe("POST /", () => {
+    describe("POST /prenotazioni", () => {
 
         it("should return 401 if user is not logged in", async () => {
-            const res = await fetchAPI("/", "POST", null);
+            const res = await fetchAPI("/prenotazioni", "POST", null);
             return expect(res.statusCode).toEqual(401);
         });
 
@@ -72,7 +72,7 @@ describe("Prenotazioni", () => {
             utenteCittadino = utenteCittadino._id;
 
             const token = await generateToken(utenteCittadino, userCittadino.email);
-            const res = await fetchAPI("/", "POST", { descrizione: "Test" }, token);
+            const res = await fetchAPI("/prenotazioni", "POST", { descrizione: "Test" }, token);
             return expect(res.statusCode).toEqual(424);
         });
 
@@ -83,15 +83,15 @@ describe("Prenotazioni", () => {
             utenteCittadino = utenteCittadino._id;
 
             const token = await generateToken(utenteCittadino, userCittadino.email);
-            const res = await fetchAPI("/", "POST", { descrizione: "Test", dateUtili: ["2024-12-31"] }, token);
+            const res = await fetchAPI("/prenotazioni", "POST", { descrizione: "Test", dateUtili: ["2024-12-31"] }, token);
             return expect(res.statusCode).toEqual(201);
         });
     });
 
-    describe("PUT /:idPrenotazione", () => {
+    describe("PUT /prenotazioni/:idPrenotazione", () => {
 
         it("should return 401 if user is not logged in", async () => {
-            const res = await fetchAPI("/12345", "PUT", null);
+            const res = await fetchAPI("/prenotazioni/12345", "PUT", null);
             return expect(res.statusCode).toEqual(401);
         });
 
@@ -102,7 +102,7 @@ describe("Prenotazioni", () => {
             utenteEnte = utenteEnte._id;
 
             const token = await generateToken(utenteEnte, userEnte.email);
-            const res = await fetchAPI("/12345", "PUT", { nuovoStato: "confermata" }, token);
+            const res = await fetchAPI("/prenotazioni/12345", "PUT", { nuovoStato: "confermata" }, token);
             return expect(res.statusCode).toEqual(424);
         });
 
@@ -113,7 +113,7 @@ describe("Prenotazioni", () => {
             utenteEnte = utenteEnte._id;
 
             const token = await generateToken(utenteEnte, userEnte.email);
-            const res = await fetchAPI("/12345", "PUT", { nuovoStato: "confermata", dataEffettiva: "2024-12-31" }, token);
+            const res = await fetchAPI("/prenotazioni/12345", "PUT", { nuovoStato: "confermata", dataEffettiva: "2024-12-31" }, token);
             return expect(res.statusCode).toEqual(200);
         });
     });
