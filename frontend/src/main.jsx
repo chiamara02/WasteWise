@@ -107,7 +107,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/management/sondaggi',
-        
+        element: <MostraQuestionari />,
       },
       {
         path:'/management/prenotazioni',
@@ -115,8 +115,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/management/modificaPrenotazione/:id',
-        element: <ModificaPrenotazione />
-        element: <MostraQuestionari />,
+        element: <ModificaPrenotazione />,
       }
     ]
     
