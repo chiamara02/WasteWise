@@ -31,6 +31,11 @@ import MostraPrenotazioniUtente from './routes/mostraprenotazioniutente.route'
 import NuovaPrenotazione from './routes/nuovaprenotazione.route'
 import ModificaPrenotazione from './routes/modificaprenotazione.route'
 
+import MostraQuestionari from './routes/mostraquestionari.route'
+import MostraSondaggi from './routes/mostrasondaggi.route'
+import NuovoSondaggio from './routes/nuovosondaggio.route'
+import CompilaSondaggio from './routes/compilasondaggi.route'
+
 
 const router = createBrowserRouter([
   {
@@ -49,6 +54,14 @@ const router = createBrowserRouter([
   {
     path: '/wip',
     element: <WipPage />,
+  },
+  {
+    path: '/nuovosondaggio',
+    element: <NuovoSondaggio />,
+  },
+  {
+    path: '/compilasondaggio/:id',
+    element: <CompilaSondaggio />,
   },
   {
     path: '/dashboard',
@@ -80,7 +93,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/sondaggi',
-        element: <WipPage />,
+        element: <MostraSondaggi />,
       },
     ]  
   },
@@ -103,6 +116,7 @@ const router = createBrowserRouter([
       {
         path:'/management/modificaPrenotazione/:id',
         element: <ModificaPrenotazione />
+        element: <MostraQuestionari />,
       }
     ]
     

@@ -9,7 +9,7 @@ class GestoreSegnalazioni {
     static async nuovaSegnalazione(utente, descrizione, indirizzo, foto) {
         
         let user = await User.findById(utente);
-        if (!user) throw new FailedDependencyException("User not found");
+        if (!user) throw new UnauthorizedException("User not found");
 
 
         let segnalazione = await Segnalazione.create({
