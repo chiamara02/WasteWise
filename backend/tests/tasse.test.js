@@ -36,7 +36,7 @@ describe("Tasse", () => {
             }).exec();
             utente = utente._id;
 
-            const token = generateToken(utente, userEnte.email);
+            const token = await generateToken(utente, userEnte.email);
             const res = await fetchAPI("/tasse", "GET", null, token);
             return expect(res.statusCode).toEqual(401);
         });
@@ -47,7 +47,7 @@ describe("Tasse", () => {
             }).exec();
             utente = utente._id;
 
-            const token = generateToken(utente, userOperatore.email);
+            const token = await generateToken(utente, userOperatore.email);
             const res = await fetchAPI("/tasse", "GET", null, token);
             return expect(res.statusCode).toEqual(401);
         });        
@@ -59,7 +59,7 @@ describe("Tasse", () => {
             }).exec();
             utenteCittadino = utenteCittadino._id;
 
-            const token = generateToken(utenteCittadino, userCittadino.email);
+            const token = await generateToken(utenteCittadino, userCittadino.email);
             const res = await fetchAPI("/tasse", "GET", null, token);
             return expect(res.statusCode).toEqual(200) && res;
         });
