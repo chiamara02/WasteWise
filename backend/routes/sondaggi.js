@@ -16,15 +16,29 @@ router.get(
     session: false,
   }),
   async function (req, res, next) {
+    console.log(req.user + " route sondaggi get sondaggio cittadino ");
     const user = await User.findOne({ _id: req.user._id });
 
     try {
-      idSondaggio = await TipoUtente.getUserType(user.userType).mostraSondaggi(
-        req.body.titolo,
-        req.body.domande
-      );
+      idSondaggio = await TipoUtente.getUserType(user.userType).mostraSondaggi();
       successRes(res, "OK", idSondaggio, 201);
     } catch (error) {
+      errorRes(res, error, error.message, error.code);
+    }
+  }
+);
+
+router.get(
+  "/sondaggio/:id",
+  passport.authenticate("jwt", {
+    session: false,
+  }),
+  async function (req, res, next) {
+    const user = await User.findOne({ _id: req.user._id });
+    try{
+      idSondaggio = await TipoUtente.getUserType(user.userType).mostraSondaggiById(req.params.id);
+      successRes(res, "OK", idSondaggio, 201);
+    }catch(error){
       errorRes(res, error, error.message, error.code);
     }
   }
@@ -37,6 +51,7 @@ router.post(
     session: false,
   }),
   async function (req, res, next) {
+    console.log(req.user + " route sondaggi post sondaggio ente ");
     const user = await User.findOne({ _id: req.user._id });
 
     try {

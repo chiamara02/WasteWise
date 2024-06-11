@@ -33,7 +33,9 @@ class Cittadino extends LoggedUser {
         return SondaggiHandler.mostraSondaggiDisponibili();
     }
 
-    
+    static async mostraSondaggiById(id){
+        return SondaggiHandler.mostraSondaggi(id);
+    }
 
     static async getFeedAttuale(zonaId) {
         return await TrackingHandler.getFeedAttuale(zonaId);

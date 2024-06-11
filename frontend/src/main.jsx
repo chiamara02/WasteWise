@@ -26,6 +26,11 @@ import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
 import OperatoreD from './routes/operatore.route'
 
+import MostraQuestionari from './routes/mostraquestionari.route'
+import MostraSondaggi from './routes/mostrasondaggi.route'
+import NuovoSondaggio from './routes/nuovosondaggio.route'
+import CompilaSondaggio from './routes/compilasondaggi.route'
+
 
 const router = createBrowserRouter([
   {
@@ -44,6 +49,14 @@ const router = createBrowserRouter([
   {
     path: '/wip',
     element: <WipPage />,
+  },
+  {
+    path: '/nuovosondaggio',
+    element: <NuovoSondaggio />,
+  },
+  {
+    path: '/compilasondaggio/:id',
+    element: <CompilaSondaggio />,
   },
   {
     path: '/dashboard',
@@ -71,7 +84,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/sondaggi',
-        element: <WipPage />,
+        element: <MostraSondaggi />,
       },
     ]  
   },
@@ -85,7 +98,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/management/sondaggi',
-        
+        element: <MostraQuestionari />,
       }
     ]
     
