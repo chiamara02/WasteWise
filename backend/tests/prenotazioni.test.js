@@ -16,10 +16,7 @@ const userEnte = users.find(
     (u) =>
         u.userType === "ente" && u.email === "asd1@asd.asd"
 );
-const userOperatore = users.find(
-    (u) =>
-        u.userType === "operatore" && u.email === "asd12@asd.asd"
-);
+
 
 describe("Prenotazioni", () => {
 
@@ -36,7 +33,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteCittadino = utenteCittadino._id;
 
-            const token = generateToken(utenteCittadino, userCittadino.email);
+            const token = await generateToken(utenteCittadino, userCittadino.email);
             const res = await fetchAPI("/getPrenotazioni", "GET", null, token);
             return expect(res.statusCode).toEqual(200);
         });
@@ -55,7 +52,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteEnte = utenteEnte._id;
 
-            const token = generateToken(utenteEnte, userEnte.email);
+            const token = await generateToken(utenteEnte, userEnte.email);
             const res = await fetchAPI("/getAllPrenotazioni", "GET", null, token);
             return expect(res.statusCode).toEqual(200);
         });
@@ -74,7 +71,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteCittadino = utenteCittadino._id;
 
-            const token = generateToken(utenteCittadino, userCittadino.email);
+            const token = await generateToken(utenteCittadino, userCittadino.email);
             const res = await fetchAPI("/", "POST", { descrizione: "Test" }, token);
             return expect(res.statusCode).toEqual(424);
         });
@@ -85,7 +82,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteCittadino = utenteCittadino._id;
 
-            const token = generateToken(utenteCittadino, userCittadino.email);
+            const token = await generateToken(utenteCittadino, userCittadino.email);
             const res = await fetchAPI("/", "POST", { descrizione: "Test", dateUtili: ["2024-12-31"] }, token);
             return expect(res.statusCode).toEqual(201);
         });
@@ -104,7 +101,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteEnte = utenteEnte._id;
 
-            const token = generateToken(utenteEnte, userEnte.email);
+            const token = await generateToken(utenteEnte, userEnte.email);
             const res = await fetchAPI("/12345", "PUT", { nuovoStato: "confermata" }, token);
             return expect(res.statusCode).toEqual(424);
         });
@@ -115,7 +112,7 @@ describe("Prenotazioni", () => {
             }).exec();
             utenteEnte = utenteEnte._id;
 
-            const token = generateToken(utenteEnte, userEnte.email);
+            const token = await generateToken(utenteEnte, userEnte.email);
             const res = await fetchAPI("/12345", "PUT", { nuovoStato: "confermata", dataEffettiva: "2024-12-31" }, token);
             return expect(res.statusCode).toEqual(200);
         });
