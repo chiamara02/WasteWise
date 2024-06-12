@@ -1,4 +1,4 @@
-const backendUrl = "http://localhost:3001/api";
+const backendUrl = "https://backendwastewise.duckdns.org/api";
 
 async function fetchAPI(endpoint, method, body = {}) {
   const requestOptions = {
@@ -128,6 +128,36 @@ export async function getTracking(zona) {
 }
 
 export async function nextStop(zona) {
+
+    return await fetchAPI('/tracking', 'POST', {zona:zona})
+}
+
+export async function nuovaPrenotazione(descrizione, dateUtili) {
+    let data = await fetchAPI('/prenotazioni', 'POST', {
+        "descrizione": descrizione,
+        "dateUtili": dateUtili
+    });
+    return data;
+}
+
+export async function getPrenotazioni() {
+    return await fetchAPI('/prenotazioni/getPrenotazioni', 'GET');
+    
+}
+
+export async function getAllPrenotazioni() {
+    return await fetchAPI('/prenotazioni/getAllPrenotazioni', 'GET');
+    
+}
+
+export async function modificaPrenotazione(idPrenotazione, nuovoStato, dataEffettiva) {
+    let data = await fetchAPI('/prenotazioni/'.concat(idPrenotazione), 'PUT', {
+        "nuovoStato": nuovoStato,
+        "dataEffettiva": dataEffettiva
+    });
+    return data;
+}
+
   return await fetchAPI("/tracking", "POST", { zona: zona });
 }
 
@@ -164,4 +194,5 @@ export async function getQuestionari() {
 export async function getSondaggio(id) {
     return await fetchAPI(`/sondaggi/sondaggio/${id}`, 'GET');
 }
+
 
