@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "5f8b1b3b9b7e4b0017f3b3b1",
+    "titolo": "Sondaggio sul traffico",
+    "domande": [
+      "Come valuti la situazione del traffico nella tua zona?",
+      "Quali sono i principali problemi legati al traffico che riscontri?"
+    ]
+  },
+  {
+    "_id": "5f8b1b3b9b7e4b0017f3b3b2",
+    "titolo": "Sondaggio sulla soddisfazione del servizio",
+    "domande": [
+      "Come valuti la qualità del servizio fornito?",
+      "Cosa suggeriresti per migliorare il servizio?"
+    ]
+  },
+  {
+    "_id": "5f8b1b3b9b7e4b0017f3b3b3",
+    "titolo": "Sondaggio sulla salute pubblica",
+    "domande": [
+      "Quanto ti senti informato riguardo alle misure di salute pubblica?",
+      "Hai ricevuto supporto adeguato durante la pandemia?"
+    ]
+  }
+]

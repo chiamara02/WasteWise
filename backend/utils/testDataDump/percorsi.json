@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "5f2e3d8a8b9c6e0017e6d1f1",
+        "zonaAssociata": "5f2e3d8a8b9c6e0017e6d1a9", 
+        "tappe": [
+            "5f2e3d8a8b9c6e0017e6d1a4",
+            "5f2e3d8a8b9c6e0017e6d1a5",
+            "5f2e3d8a8b9c6e0017e6d1a6",
+            "5f2e3d8a8b9c6e0017e6d1a7",
+            "5f2e3d8a8b9c6e0017e6d1a8",
+            "5f2e3d8a8b9c6e0017e6d1a9",
+            "5f2e3d8a8b9c6e0017e6d1aa",
+            "5f2e3d8a8b9c6e0017e6d1ab",
+            "5f2e3d8a8b9c6e0017e6d1ac",
+            "5f2e3d8a8b9c6e0017e6d1ad"
+        ]
+    },
+    {
+        "_id":"5f2e3d8a8b9c6e0017e6d1f2",
+        "zonaAssociata": "5f2e3d8a8b9c6e0017e6d1a3",
+        "tappe": [
+            "5f2e3d8a8b9c6e0017e6d1ae",
+            "5f2e3d8a8b9c6e0017e6d1af",
+            "5f2e3d8a8b9c6e0017e6d1b0",
+            "5f2e3d8a8b9c6e0017e6d1b1",
+            "5f2e3d8a8b9c6e0017e6d1b2",
+            "5f2e3d8a8b9c6e0017e6d1b3",
+            "5f2e3d8a8b9c6e0017e6d1b4",
+            "5f2e3d8a8b9c6e0017e6d1b5",
+            "5f2e3d8a8b9c6e0017e6d1b6",
+            "5f2e3d8a8b9c6e0017e6d1b7",
+            "5f2e3d8a8b9c6e0017e6d1b8",
+            "5f2e3d8a8b9c6e0017e6d1b9",
+            "5f2e3d8a8b9c6e0017e6d1c0",
+            "5f2e3d8a8b9c6e0017e6d1c1"
+        ]
+    }
+]

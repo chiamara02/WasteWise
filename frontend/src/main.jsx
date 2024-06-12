@@ -16,10 +16,25 @@ import Login from './routes/login.route'
 
 import NuovaSegnalazione from './routes/nuovasegnalazione.route'
 import MostraSegnalazioni from './routes/mostrasegnalazioni.route'
+
 import TasseRoute from './routes/tasse.route'
+import Tracking from './routes/mostratracking.route'
+
+import ManagementD from './routes/management.route'
+import Percorsi, {loader, loader as percorsiLoader } from './routes/percorsi.route'
 
 import Signup, {loader as signupLoader} from './routes/signup.route'
 import WipPage from './routes/wip.route'
+import OperatoreD from './routes/operatore.route'
+import MostraPrenotazioni from './routes/mostraprenotazioni'
+import MostraPrenotazioniUtente from './routes/mostraprenotazioniutente.route'
+import NuovaPrenotazione from './routes/nuovaprenotazione.route'
+import ModificaPrenotazione from './routes/modificaprenotazione.route'
+
+import MostraQuestionari from './routes/mostraquestionari.route'
+import MostraSondaggi from './routes/mostrasondaggi.route'
+import NuovoSondaggio from './routes/nuovosondaggio.route'
+import CompilaSondaggio from './routes/compilasondaggi.route'
 
 
 const router = createBrowserRouter([
@@ -41,6 +56,14 @@ const router = createBrowserRouter([
     element: <WipPage />,
   },
   {
+    path: '/nuovosondaggio',
+    element: <NuovoSondaggio />,
+  },
+  {
+    path: '/compilasondaggio/:id',
+    element: <CompilaSondaggio />,
+  },
+  {
     path: '/dashboard',
     element: <Dashboard />,
     children: [
@@ -54,7 +77,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/prenotazioni',
-        element: <WipPage />,
+        element: <MostraPrenotazioniUtente />,
+      },
+      {
+        path: '/dashboard/nuovaPrenotazione',
+        element: <NuovaPrenotazione />
+      },
+      {
+        path: '/dashboard/tracking',
+        element: <Tracking />,
       },
       {
         path: '/dashboard/segnalazioni',
@@ -62,10 +93,43 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/sondaggi',
-        element: <WipPage />,
+        element: <MostraSondaggi />,
       },
+    ]  
+  },
+  {
+    path: '/management',
+    element: <ManagementD />,
+    children: [
+      {
+        path:'/management/segnalazioni',
+        element: <MostraSegnalazioni />,
+      },
+      {
+        path:'/management/sondaggi',
+        element: <MostraQuestionari />,
+      },
+      {
+        path:'/management/prenotazioni',
+        element: <MostraPrenotazioni />,
+      },
+      {
+        path:'/management/modificaPrenotazione/:id',
+        element: <ModificaPrenotazione />,
+      }
     ]
-  
+    
+  },
+  {
+    path: '/operatore',
+    element: <OperatoreD />,
+    children: [
+      {
+        path:'/operatore/percorsi',
+        element: <Percorsi />,
+        loader: percorsiLoader
+      }
+    ]
   },
 
 ])

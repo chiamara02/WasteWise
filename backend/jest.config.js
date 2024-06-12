@@ -20,6 +20,7 @@ module.exports = {
         pageTitle: "Test Report",
         outputPath: "/app/report/test-report.html",
         includeFailureMsg: true,
+        // includeConsoleLog: true,
         includeSuiteFailure: true,
         includeStackTrace: true,
         verbose: true,

@@ -8,7 +8,7 @@ class TaxHandler {
     static async getTasse(idUtente, stato = undefined) {
         //check if the user exist
         let user = await User.findById(idUtente);
-        if (!user) throw new NotFoundException("User not found");
+        if (!user) throw new UnauthorizedException("User not found");
 
         let fieldsToSelect = "scadenza stato importo -_id"
         let query = { idUtente: idUtente };

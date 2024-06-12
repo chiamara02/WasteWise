@@ -1,0 +1,27 @@
+[
+    {
+      "sondaggio": "5f8b1b3b9b7e4b0017f3b3b1",
+      "utente": "5f2e3d8a8b9c6e0017e6d420",
+      "risposte": [
+        "La situazione del traffico è scarsa",
+        "I principali problemi sono i semafori malfunzionanti"
+      ]
+    },
+    {
+      "sondaggio": "5f8b1b3b9b7e4b0017f3b3b2",
+      "utente": "5f2e3d8a8b9c6e0017e6d420",
+      "risposte": [
+        "Il servizio è soddisfacente",
+        "Si potrebbe migliorare la tempestività delle risposte"
+      ]
+    },
+    {
+      "sondaggio": "5f8b1b3b9b7e4b0017f3b3b3",
+      "utente": "5f2e3d8a8b9c6e0017e6d420",
+      "risposte": [
+        "Mi sento abbastanza informato",
+        "Il supporto ricevuto è stato sufficiente"
+      ]
+    }
+  ]
+  
